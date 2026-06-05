@@ -15,8 +15,6 @@ body{
     color:var(--light);
     font-family:Arial, sans-serif;
     position: relative;
-    /* Menambahkan padding-top pada body untuk memastikan konten tidak tertutup logo */
-    padding-top: 48mm; 
 }
 
 .top-left-logo {
