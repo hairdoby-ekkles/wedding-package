@@ -28,12 +28,13 @@ body{
 .top-left-logo {
     position: absolute;
     top: 20mm;
-    left: 0mm;
+    left: 5mm; /* Given 5mm safety gap from the screen edge */
     width: 20mm;
     height: 20mm;
     object-fit: contain;
     cursor: pointer;
     transition: top 0.15s ease-in-out; 
+    z-index: 10;
 }
 
 .top-left-logo.pressed {
@@ -43,12 +44,13 @@ body{
 .top-right-wa {
     position: absolute;
     top: 20mm;
-    right: 0mm;
+    right: 5mm; /* Given 5mm safety gap from the screen edge */
     width: 20mm;
     height: 20mm;
     object-fit: contain;
     cursor: pointer;
     transition: top 0.15s ease-in-out;
+    z-index: 10;
 }
 
 .top-right-wa.pressed {
@@ -59,7 +61,9 @@ body{
     width:95%;
     max-width:700px;
     margin:auto;
-    padding: 0 20px 20px 20px;
+    padding:20px;
+    /* Added responsive padding-top so titles clear floating logos on small displays */
+    padding-top: calc(20mm + 25mm); 
 }
 
 h1{
@@ -72,7 +76,7 @@ h1{
 
 .subtitle{
     text-align:center;
-    margin-bottom:30px;
+    margin-bottom: 35px; /* Added clear space to prevent touching the form-box */
     color:var(--gold);
     font-size:150%;
 }
@@ -82,6 +86,7 @@ h1{
     border-radius:20px;
     padding:25px;
     background:#1a1a1a;
+    margin-top: 5mm; /* Forced explicit space from headers */
 }
 
 .form-box label{
@@ -190,6 +195,13 @@ button:disabled {
 .promo-text p {
     margin: 5px 0;
 }
+
+/* Media Query to ensure perfect spacing on smaller mobile dimensions */
+@media (max-width: 768px) {
+    .container {
+        padding-top: calc(20mm + 25mm);
+    }
+}
 </style>
 </head>
 
@@ -205,7 +217,6 @@ button:disabled {
     <div class="form-box">
         <form id="bookingForm">
             
-
             <label>Nama Client</label>
             <input type="text" id="nama" required>
 
@@ -221,15 +232,10 @@ button:disabled {
             <label>Lokasi Hairdo Dilakukan </label>
             <textarea id="lokasi" required></textarea>
 
-           
-
-            <label>Total Pax</label>
-            <input type="number" id="total_pax" required>
-
             <label>Retouch</label>
             <select id="retouch">
                 <option>0</option>
-				<option>1</option>
+                <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -239,7 +245,7 @@ button:disabled {
             <label>Di Atas 45 Tahun</label>
             <select id="usia_45">
                 <option>0</option>
-				<option>1</option>
+                <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -249,7 +255,7 @@ button:disabled {
             <label>Facelift</label>
             <select id="facelift">
                 <option>0</option>
-				<option>1</option>
+                <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -259,7 +265,7 @@ button:disabled {
             <label>Hairclip</label>
             <select id="hairclip">
                 <option>0</option>
-				<option>1</option>
+                <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -270,7 +276,7 @@ button:disabled {
             <label>Portfolio</label>
             <select id="portfolio">
                 <option>0</option>
-				<option>1</option>
+                <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -280,18 +286,17 @@ button:disabled {
             <label>Photoshoot</label>
             <select id="photoshoot">
                 <option>0</option>
-				<option>1</option>
+                <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
                 <option>5</option>
             </select>
 
-
             <label>Stand by</label>
             <select id="standby">
                 <option>0</option>
-				<option>1</option>
+                <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
@@ -300,10 +305,10 @@ button:disabled {
 
             <label>Request Model Rambut</label>
             <select id="request_model">		
-			   <option>Model Terkini</option>
+               <option>Model Terkini</option>
                <option>Sesuai Wajah</option>
-			   <option>Sesuai Musim</option>
-			   </select>				
+               <option>Sesuai Musim</option>
+            </select>				
 				
             <label>Pembayaran</label>
             <select id="pembayaran">
@@ -312,7 +317,7 @@ button:disabled {
             </select>
 
            <button type="submit" id="submitBtn">KIRIM BOOKING</button>
-           </form>
+        </form>
 
         <div class="success" id="successMessage">
             Booking berhasil dikirim ✨
@@ -323,13 +328,13 @@ button:disabled {
         <a href="https://aban-007.github.io/hairdo-by-ekkles/" target="_blank" class="cta-button">FOLLOW OUR INSTAGRAM</a>
         <div class="promo-text">
             <h3>MOM | ENGAGEMENT | BIRTHDAY | ANNIVERSARY</h3>
-<p>Free rental of synthetic hair clips and toupees if needed, must be returned</p>
+            <p>Free rental of synthetic hair clips and toupees if needed, must be returned</p>
             <p>maximum h+3 from the event date</p>
-    <p>Confirm hairclip color max H-2 weeks before the event</p>
- <p>Free transportation to Gading Serpong, Alsut, Karawaci, BSD</p>
-     <p>Free hair accessories (subject to availability)</p>
+            <p>Confirm hairclip color max H-2 weeks before the event</p>
+            <p>Free transportation to Gading Serpong, Alsut, Karawaci, BSD</p>
+            <p>Free hair accessories (subject to availability)</p>
             <p>Certified hairstylist & hijabstylist</p>
-<p>✨Suka share tutorial dan cerita menarik ttg rambut</p>
+            <p>✨Suka share tutorial dan cerita menarik ttg rambut</p>
             <p>🙋🏻‍♀️ OPEN SELF-PRO HAIRDO CLASS</p>
             <p>PL/ availability👇🏻(Admin)</p>
         </div>
@@ -341,7 +346,6 @@ button:disabled {
 </div>
 
 <script>
-// Atur tanggal minimum ke hari ini di sisi klien
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('tanggal').setAttribute('min', today);
 
@@ -370,18 +374,16 @@ const submitBtn = document.getElementById('submitBtn');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Validasi tambahan sebelum kirim data jika user mencoba memotong batasan HTML5
     const inputTanggal = document.getElementById('tanggal').value;
     const tanggalPilihan = new Date(inputTanggal);
     const hariIni = new Date();
     
-    // Set jam, menit, detik ke 0 untuk membandingkan tanggal murni
     hariIni.setHours(0,0,0,0);
     tanggalPilihan.setHours(0,0,0,0);
     
     if (tanggalPilihan < hariIni) {
         alert('tanggal sudah berlalu.');
-        return; // Menghentikan pengiriman data ke Google Sheet
+        return;
     }
     
     submitBtn.disabled = true;
@@ -392,8 +394,8 @@ form.addEventListener('submit', async (e) => {
         tanggal: document.getElementById('tanggal').value,
         jam: document.getElementById('jam').value,
         lokasi: document.getElementById('lokasi').value,
-        acara: document.getElementById('acara').value,
-        total_pax: document.getElementById('total_pax').value,
+        acara: document.getElementById('acara') ? document.getElementById('acara').value : '',
+        total_pax: document.getElementById('total_pax') ? document.getElementById('total_pax').value : '',
         retouch: document.getElementById('retouch').value,
         usia_45: document.getElementById('usia_45').value,
         facelift: document.getElementById('facelift').value,
@@ -413,27 +415,23 @@ form.addEventListener('submit', async (e) => {
         });
         const result = await response.json();
         if(result.result === 'success'){
-            // Tampilkan pesan sukses
             document.getElementById('successMessage').style.display = 'block';
             form.reset();
             
-            // Atur kembali min date setelah form di-reset
             document.getElementById('tanggal').setAttribute('min', today);
             
-            // Tunggu 5 detik lalu redirect
             setTimeout(() => {
                 window.location.href = "https://aban-007.github.io/hairdo-by-ekkles/";
             }, 5000);
             
-            // Disable tombol selama 5 menit
             setTimeout(() => {
                 submitBtn.disabled = false;
-            }, 300000); // 5 menit dalam milidetik
+            }, 300000); 
         }
     } catch(error){
         alert('Terjadi kesalahan.');
         console.log(error);
-        submitBtn.disabled = false; // Aktifkan kembali jika error
+        submitBtn.disabled = false;
     }
 });
 </script>
