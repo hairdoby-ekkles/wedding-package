@@ -206,35 +206,35 @@ button:disabled {
     <div class="form-box">
         <form id="bookingForm">
 
-            <label>Client Name</label>
-            <input type="text" id="clientName" required>
+            <label id="label-nama">Nama Client</label>
+            <input type="text" id="nama" required>
 
-            <label>WhatsApp Number</label>
-            <input type="text" id="whatsapp" required>
+            <label id="label-wa">Nomor WhatsApp</label>
+            <input type="text" id="wa" required>
 
-            <label>Tanggal Booking</label>
+            <label id="label-tanggal">Tanggal Booking</label>
             <input type="date" id="tanggal" required>
 
-            <label>Jam Booking</label>
+            <label id="label-jam">Jam Booking</label>
             <input type="time" id="jam" required>
 
-            <label>Lokasi Hairdo Dilakukan </label>
+            <label id="label-lokasi">Lokasi Hairdo Dilakukan </label>
             <textarea id="lokasi" required></textarea>
 
-            <label>Jenis Acara</label>
+            <label id="label-acara">Jenis Acara</label>
             <select id="acara">
-                <option>Party</option>
-				<option>Wisuda</option>
-                <option>Wedding</option>
-                <option>Engagement</option>
-                <option>Prewedding</option>
-                <option>Lainnya</option>
-            </select>
+                <option value="Party" id="opt-party">Party</option>
+				<option value="Wisuda" id="opt-wisuda">Wisuda</option>
+                <option value="Lainnya" id="opt-lainnya">Lainnya</option>
+                <option value="Wedding" id="opt-wedding">Wedding</option>
+                <option value="Prewedding" id="opt-prewedding">Prewedding</option>
+                <option value="Engagement" id="opt-engagement">Engagement</option>
+                </select>
 
-            <label>Total Pax</label>
+            <label id="label-pax">Total Pax</label>
             <input type="number" id="total_pax" required>
 
-            <label>Retouch</label>
+            <label id="label-retouch">Retouch</label>
             <select id="retouch">
                 <option>0</option>
 				<option>1</option>
@@ -244,7 +244,7 @@ button:disabled {
                 <option>5</option>
             </select>
 
-            <label>Di Atas 45 Tahun</label>
+            <label id="label-usia45">Di Atas 45 Tahun</label>
             <select id="usia_45">
                 <option>0</option>
 				<option>1</option>
@@ -254,8 +254,8 @@ button:disabled {
                 <option>5</option>
             </select>
 
-            <label>Hair Clips</label>
-            <select id="hair_clips">
+            <label id="label-facelift">Facelift</label>
+            <select id="facelift">
                 <option>0</option>
 				<option>1</option>
                 <option>2</option>
@@ -263,18 +263,58 @@ button:disabled {
                 <option>4</option>
                 <option>5</option>
             </select>
-           
-             <label>Request Model Rambut</label>
-            <select id="request_model">		
-			   <option>Model Terkini</option>
-               <option>Sesuai wajah</option>
-			   <option>Sesuai Musim</option>
+
+            <label id="label-hairclip">Hairclip</label>
+            <select id="hairclip">
+                <option>0</option>
+				<option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option value="Rental" id="opt-rental">Rental</option>
+            </select>
+            
+            <label id="label-portfolio">Portfolio</label>
+            <select id="portfolio">
+                <option>0</option>
+				<option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+
+            <label id="label-photoshoot">Photoshoot</label>
+            <select id="photoshoot">
+                <option>0</option>
+				<option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+
+            <label id="label-standby">Stand by</label>
+            <select id="standby">
+                <option>0</option>
+				<option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+
+            <label id="label-addtrial">Add Trial</label>
+            <select id="addtrial">		
+			   <option value="Weekdays" id="opt-weekdays">Weekdays </option>
+               <option value="Weekends" id="opt-weekends">Weekends</option>
 			   </select>				
 				
-            <label>Pembayaran</label>
+            <label id="label-pembayaran">Pembayaran</label>
             <select id="pembayaran">
-                <option>DP + Pelunasan</option>
-                <option>DP H-3 Lunas</option>
+                <option value="DP + Lunas" id="opt-dp1">DP + Lunas</option>
+                <option value="DP H-3 Lunas" id="opt-dp2">DP H-3 Lunas</option>
             </select>
 
            <button type="submit" id="submitBtn">KIRIM BOOKING</button>
@@ -323,7 +363,11 @@ waLogo.addEventListener('click', () => {
     }, 300);
 });
 
-const scriptURL="https://script.google.com/macros/s/AKfycbwvRHLYmF0bAE0kEC9PBYkfoKoF7WFJHUR49tFKGJ-yYUtHgwAPDDvHlhp3f7Ai6BMn/exec";
+const scriptURL="https://script.google.com/macros/s/AKfycbxW3xzjXpIDjs0R4KHLewElmDDBFg2937fy7mSbC4nw-VnLSc8fzB4c1a0oIdHPcuvscQ/exec";
+
+    
+    
+   
     
 const form = document.getElementById('bookingForm');
 const submitBtn = document.getElementById('submitBtn');
@@ -348,9 +392,9 @@ form.addEventListener('submit', async (e) => {
     submitBtn.disabled = true;
     
     const data = {
-    
-        clientname: document.getElementById('clientname').value,
-        whatsapp: document.getElementById('whatsapp').value,
+
+nama: document.getElementById('nama').value,
+        wa: document.getElementById('wa').value,
         tanggal: document.getElementById('tanggal').value,
         jam: document.getElementById('jam').value,
         lokasi: document.getElementById('lokasi').value,
@@ -358,11 +402,16 @@ form.addEventListener('submit', async (e) => {
         total_pax: document.getElementById('total_pax').value,
         retouch: document.getElementById('retouch').value,
         usia_45: document.getElementById('usia_45').value,
-        hair_clips: document.getElementById('hair_clips').value,
-        request_model: document.getElementById('request_model').value,
+        facelift: document.getElementById('facelift').value,
+        hairclip: document.getElementById('hairclip').value,
+        portfolio: document.getElementById('portfolio').value,
+        photoshoot: document.getElementById('photoshoot').value,
+        standby: document.getElementById('standby').value,
+        addtrial: document.getElementById('addtrial').value,
         pembayaran: document.getElementById('pembayaran').value,
         status: 'belum bayar',
     };
+    
 
     try {
         const response = await fetch(scriptURL, {
