@@ -206,12 +206,11 @@ button:disabled {
     <div class="form-box">
         <form id="bookingForm">
 
-
             <label>Client Name</label>
-            <input type="text" id="clientname" required>
+            <input type="text" id="clientName" required>
 
-            <label>Nomor WhatsApp</label>
-            <input type="text" id="wa" required>
+            <label>WhatsApp Number</label>
+            <input type="text" id="whatsapp" required>
 
             <label>Tanggal Booking</label>
             <input type="date" id="tanggal" required>
@@ -320,7 +319,7 @@ waLogo.addEventListener('click', () => {
     setTimeout(() => { waLogo.classList.remove('pressed'); }, 150);
     setTimeout(() => {
         const text = encodeURIComponent("Form sudah saya isi dan kirim saya tunggu kabarnya selanjutnya yaa Kak");
-        window.open(`https://wa.me/6281314798161?text=${text}`, '_blank');
+        window.open(`https://whatsapp.me/6281314798161?text=${text}`, '_blank');
     }, 300);
 });
 
@@ -351,7 +350,7 @@ form.addEventListener('submit', async (e) => {
     const data = {
     
         clientname: document.getElementById('clientname').value,
-        wa: document.getElementById('wa').value,
+        whatsapp: document.getElementById('whatsapp').value,
         tanggal: document.getElementById('tanggal').value,
         jam: document.getElementById('jam').value,
         lokasi: document.getElementById('lokasi').value,
