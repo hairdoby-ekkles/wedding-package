@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -206,11 +206,9 @@ button:disabled {
     <div class="form-box">
         <form id="bookingForm">
 
-			<label>Nama MUA</label>
-            <input type="text" id="nama_mua" required>
 
-            <label>Nama Client</label>
-            <input type="text" id="nama" required>
+            <label>Client Name</label>
+            <input type="text" id="clientname" required>
 
             <label>Nomor WhatsApp</label>
             <input type="text" id="wa" required>
@@ -351,8 +349,8 @@ form.addEventListener('submit', async (e) => {
     submitBtn.disabled = true;
     
     const data = {
-        nama_mua: document.getElementById('nama_mua').value,
-        nama: document.getElementById('nama').value,
+    
+        clientname: document.getElementById('clientname').value,
         wa: document.getElementById('wa').value,
         tanggal: document.getElementById('tanggal').value,
         jam: document.getElementById('jam').value,
