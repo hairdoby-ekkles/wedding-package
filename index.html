@@ -209,8 +209,8 @@ button:disabled {
             <label id="label-nama">Nama Client</label>
             <input type="text" id="nama" required>
 
-            <label id="label-wa">Nomor WhatsApp</label>
-            <input type="text" id="wa" required>
+            <label id="label-whatsapp">Nomor WhatsApp</label>
+            <input type="text" id="whatsapp" required>
 
             <label id="label-tanggal">Tanggal Booking</label>
             <input type="date" id="tanggal" required>
@@ -359,7 +359,7 @@ waLogo.addEventListener('click', () => {
     setTimeout(() => { waLogo.classList.remove('pressed'); }, 150);
     setTimeout(() => {
         const text = encodeURIComponent("Form sudah saya isi dan kirim saya tunggu kabarnya selanjutnya yaa Kak");
-        window.open(`https://wa.me/6281314798161?text=${text}`, '_blank');
+        window.open(`https://whatsapp.me/6281314798161?text=${text}`, '_blank');
     }, 300);
 });
 
@@ -394,7 +394,7 @@ form.addEventListener('submit', async (e) => {
     const data = {
 
 nama: document.getElementById('nama').value,
-        wa: document.getElementById('wa').value,
+        whatsapp: document.getElementById('whatsapp').value,
         tanggal: document.getElementById('tanggal').value,
         jam: document.getElementById('jam').value,
         lokasi: document.getElementById('lokasi').value,
