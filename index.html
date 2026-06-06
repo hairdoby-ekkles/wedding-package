@@ -199,42 +199,44 @@ button:disabled {
 <img src="walogo.png" alt="WhatsApp" class="top-right-wa" id="waLogo">
 
 <div class="container">
-    <h1 id="text-title">WEDDING PACKAGE</h1>
-    <div class="subtitle" id="text-subtitle">BOOKING HAIRDO</div>
+    <h1>BOOKING HAIR DO</h1>
+    <div class="subtitle">SPECIAL OCCASIONS</div>
 
     <div class="form-box">
         <form id="bookingForm">
-            
 
-            <label id="label-nama">Nama Client</label>
+			<label>Nama MUA</label>
+            <input type="text" id="nama_mua" required>
+
+            <label>Nama Client</label>
             <input type="text" id="nama" required>
 
-            <label id="label-wa">Nomor WhatsApp</label>
+            <label>Nomor WhatsApp</label>
             <input type="text" id="wa" required>
 
-            <label id="label-tanggal">Tanggal Booking</label>
+            <label>Tanggal Booking</label>
             <input type="date" id="tanggal" required>
 
-            <label id="label-jam">Jam Booking</label>
+            <label>Jam Booking</label>
             <input type="time" id="jam" required>
 
-            <label id="label-lokasi">Lokasi Hairdo Dilakukan </label>
+            <label>Lokasi Hairdo Dilakukan </label>
             <textarea id="lokasi" required></textarea>
 
-            <label id="label-acara">Jenis Acara</label>
+            <label>Jenis Acara</label>
             <select id="acara">
-                <option value="Party" id="opt-party">Party</option>
-				<option value="Wisuda" id="opt-wisuda">Wisuda</option>
-                <option value="Lainnya" id="opt-lainnya">Lainnya</option>
-                <option value="Wedding" id="opt-wedding">Wedding</option>
-                <option value="Prewedding" id="opt-prewedding">Prewedding</option>
-                <option value="Engagement" id="opt-engagement">Engagement</option>
-                </select>
+                <option>Party</option>
+				<option>Wisuda</option>
+                <option>Wedding</option>
+                <option>Engagement</option>
+                <option>Prewedding</option>
+                <option>Lainnya</option>
+            </select>
 
-            <label id="label-pax">Total Pax</label>
+            <label>Total Pax</label>
             <input type="number" id="total_pax" required>
 
-            <label id="label-retouch">Retouch</label>
+            <label>Retouch</label>
             <select id="retouch">
                 <option>0</option>
 				<option>1</option>
@@ -244,7 +246,7 @@ button:disabled {
                 <option>5</option>
             </select>
 
-            <label id="label-usia45">Di Atas 45 Tahun</label>
+            <label>Di Atas 45 Tahun</label>
             <select id="usia_45">
                 <option>0</option>
 				<option>1</option>
@@ -254,8 +256,8 @@ button:disabled {
                 <option>5</option>
             </select>
 
-            <label id="label-facelift">Facelift</label>
-            <select id="facelift">
+            <label>Hair Clips</label>
+            <select id="hair_clips">
                 <option>0</option>
 				<option>1</option>
                 <option>2</option>
@@ -263,58 +265,18 @@ button:disabled {
                 <option>4</option>
                 <option>5</option>
             </select>
-
-            <label id="label-hairclip">Hairclip</label>
-            <select id="hairclip">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option value="Rental" id="opt-rental">Rental</option>
-            </select>
-            
-            <label id="label-portfolio">Portfolio</label>
-            <select id="portfolio">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-
-            <label id="label-photoshoot">Photoshoot</label>
-            <select id="photoshoot">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-
-            <label id="label-standby">Stand by</label>
-            <select id="standby">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-
-            <label id="label-addtrial">Add Trial</label>
-            <select id="addtrial">		
-			   <option value="Weekdays" id="opt-weekdays">Weekdays </option>
-               <option value="Weekends" id="opt-weekends">Weekends</option>
+           
+             <label>Request Model Rambut</label>
+            <select id="request_model">		
+			   <option>Model Terkini</option>
+               <option>Sesuai wajah</option>
+			   <option>Sesuai Musim</option>
 			   </select>				
 				
-            <label id="label-pembayaran">Pembayaran</label>
+            <label>Pembayaran</label>
             <select id="pembayaran">
-                <option value="DP + Lunas" id="opt-dp1">DP + Lunas</option>
-                <option value="DP H-3 Lunas" id="opt-dp2">DP H-3 Lunas</option>
+                <option>DP + Pelunasan</option>
+                <option>DP H-3 Lunas</option>
             </select>
 
            <button type="submit" id="submitBtn">KIRIM BOOKING</button>
@@ -326,186 +288,22 @@ button:disabled {
     </div>
 
     <div class="cta-container">
-        <a href="https://aban-007.github.io/hairdo-by-ekkles/" target="_blank" class="cta-button" id="btn-instagram">FOLLOW OUR INSTAGRAM</a>
+        <a href="https://aban-007.github.io/hairdo-by-ekkles/" target="_blank" class="cta-button">FOLLOW OUR INSTAGRAM</a>
         <div class="promo-text">
-            <h3 id="promo-h3">HAPPY WEDDING</h3>
-<p id="promo-p1">Free hairclip sintetis jika di butuhkan, dan menjadi hak milik dan tidak perlu di kembalikan</p>
-            <p id="promo-p2">Konfirmasi warna hairclip max H-3 minggu sebelum acara</p>
-    <p id="promo-p3">Free transport radius 20 km, di atas 20 km silahkan konfirmasi untuk penambahan biaya transportnya.</p>
- <p id="promo-p4">Trial wedding di weekdays, jika ingin di weekend maka ada penambahan 300k</p>
-     <P id="promo-p5">Kit touch up gratis</p>
-            <p id="promo-p6">Certified hairstylist & hijabstylist</p>
-<p id="promo-p7">✨Suka share tutorial dan cerita menarik ttg rambut</p>
-            <p id="promo-p8">🙋🏻‍♀️ OPEN SELF-PRO HAIRDO CLASS</p>
-            <p id="promo-p9">PL/ availability👇🏻(Admin)</p>
+            <h3>GRADUATION | BRIDESMAID | GUEST PARTY</h3>
+            <p>Certified hairstylist & hijabstylist</p>
+            <p>✨Suka share tutorial dan cerita menarik ttg rambut</p>
+            <p>🙋🏻‍♀️ OPEN SELF-PRO HAIRDO CLASS</p>
+            <p>PL/ availability👇🏻(Admin)</p>
         </div>
     </div>
 </div>
 
-<div class="footer" id="text-footer">
+<div class="footer">
     © 2024 HAIR DO by Ekkles. All Rights Reserved.
 </div>
 
 <script>
-// Deteksi Bahasa Otomatis berdasarkan URL parameter (?lang=en atau ?lang=id) atau bahasa browser
-const urlParams = new URLSearchParams(window.location.search);
-let currentLang = urlParams.get('lang');
-
-if (!currentLang) {
-    const browserLang = navigator.language || navigator.userLanguage;
-    currentLang = browserLang.startsWith('id') ? 'id' : 'en';
-}
-
-const translations = {
-    id: {
-        title: "WEDDING PACKAGE",
-        subtitle: "BOOKING HAIRDO",
-        nama: "Nama Client",
-        wa: "Nomor WhatsApp",
-        tanggal: "Tanggal Booking",
-        jam: "Jam Booking",
-        lokasi: "Lokasi Hairdo Dilakukan",
-        acara: "Jenis Acara",
-        pax: "Total Pax",
-        retouch: "Retouch",
-        usia45: "Di Atas 45 Tahun",
-        facelift: "Facelift",
-        hairclip: "Hairclip",
-        portfolio: "Portfolio",
-        photoshoot: "Photoshoot",
-        standby: "Stand by",
-        addtrial: "Add Trial",
-        pembayaran: "Pembayaran",
-        submit: "KIRIM BOOKING",
-        success: "Booking berhasil dikirim ✨",
-        instagram: "FOLLOW OUR INSTAGRAM",
-        promoH3: "HAPPY WEDDING",
-        promoP1: "Free hairclip sintetis jika di butuhkan, dan menjadi hak milik dan tidak perlu di kembalikan",
-        promoP2: "Konfirmasi warna hairclip max H-3 minggu sebelum acara",
-        promoP3: "Free transport radius 20 km, di atas 20 km silahkan konfirmasi untuk penambahan biaya transportnya.",
-        promoP4: "Trial wedding di weekdays, jika ingin di weekend maka ada penambahan 300k",
-        promoP5: "Kit touch up gratis",
-        promoP6: "Certified hairstylist & hijabstylist",
-        promoP7: "✨Suka share tutorial dan cerita menarik ttg rambut",
-        promoP8: "🙋🏻‍♀️ OPEN SELF-PRO HAIRDO CLASS",
-        promoP9: "PL/ availability👇🏻(Admin)",
-        alertPast: "tanggal sudah berlalu.",
-        alertError: "Terjadi kesalahan.",
-        waText: "Form sudah saya isi dan kirim saya tunggu kabarnya selanjutnya yaa Kak",
-        optParty: "Party",
-        optWisuda: "Wisuda",
-        optLainnya: "Lainnya",
-        optWedding: "Wedding",
-        optPrewedding: "Prewedding",
-        optEngagement: "Engagement",
-        optRental: "Rental",
-        optWeekdays: "Weekdays",
-        optWeekends: "Weekends",
-        optDp1: "DP + Lunas",
-        optDp2: "DP H-3 Lunas"
-    },
-    en: {
-        title: "WEDDING PACKAGE",
-        subtitle: "BOOKING HAIRDO",
-        nama: "Client Name",
-        wa: "WhatsApp Number",
-        tanggal: "Booking Date",
-        jam: "Booking Time",
-        lokasi: "Hairdo Location",
-        acara: "Event Type",
-        pax: "Total Pax",
-        retouch: "Retouch",
-        usia45: "Above 45 Years Old",
-        facelift: "Facelift",
-        hairclip: "Hairclip",
-        portfolio: "Portfolio",
-        photoshoot: "Photoshoot",
-        standby: "Stand by",
-        addtrial: "Add Trial",
-        pembayaran: "Payment Method",
-        submit: "SEND BOOKING",
-        success: "Booking successfully sent ✨",
-        instagram: "FOLLOW OUR INSTAGRAM",
-        promoH3: "HAPPY WEDDING",
-        promoP1: "Free synthetic hairclip if needed, becomes your property and does not need to be returned",
-        promoP2: "Confirm hairclip color max H-3 weeks before the event",
-        promoP3: "Free transport radius 20 km, above 20 km please confirm for additional transport fees.",
-        promoP4: "Wedding trial on weekdays, if requested on weekend there is an additional 300k charge",
-        promoP5: "Free touch-up kit",
-        promoP6: "Certified hairstylist & hijabstylist",
-        promoP7: "✨Love to share tutorials and interesting stories about hair",
-        promoP8: "🙋🏻‍♀️ OPEN SELF-PRO HAIRDO CLASS",
-        promoP9: "PL/ availability👇🏻(Admin)",
-        alertPast: "The date has already passed.",
-        alertError: "An error occurred.",
-        waText: "I have filled and submitted the form, looking forward to hearing from you soon Kak",
-        optParty: "Party",
-        optWisuda: "Graduation",
-        optLainnya: "Others",
-        optWedding: "Wedding",
-        optPrewedding: "Prewedding",
-        optEngagement: "Engagement",
-        optRental: "Rental",
-        optWeekdays: "Weekdays",
-        optWeekends: "Weekends",
-        optDp1: "Deposit + Full Payment",
-        optDp2: "Deposit, H-3 Full Payment"
-    }
-};
-
-// Terapkan translasi ke elemen HTML
-function applyTranslations(lang) {
-    const t = translations[lang] || translations['id'];
-    
-    document.getElementById('text-title').innerText = t.title;
-    document.getElementById('text-subtitle').innerText = t.subtitle;
-    document.getElementById('label-nama').innerText = t.nama;
-    document.getElementById('label-wa').innerText = t.wa;
-    document.getElementById('label-tanggal').innerText = t.tanggal;
-    document.getElementById('label-jam').innerText = t.jam;
-    document.getElementById('label-lokasi').innerText = t.lokasi;
-    document.getElementById('label-acara').innerText = t.acara;
-    document.getElementById('label-pax').innerText = t.pax;
-    document.getElementById('label-retouch').innerText = t.retouch;
-    document.getElementById('label-usia45').innerText = t.usia45;
-    document.getElementById('label-facelift').innerText = t.facelift;
-    document.getElementById('label-hairclip').innerText = t.hairclip;
-    document.getElementById('label-portfolio').innerText = t.portfolio;
-    document.getElementById('label-photoshoot').innerText = t.photoshoot;
-    document.getElementById('label-standby').innerText = t.standby;
-    document.getElementById('label-addtrial').innerText = t.addtrial;
-    document.getElementById('label-pembayaran').innerText = t.pembayaran;
-    document.getElementById('submitBtn').innerText = t.submit;
-    document.getElementById('successMessage').innerText = t.success;
-    document.getElementById('btn-instagram').innerText = t.instagram;
-    document.getElementById('promo-h3').innerText = t.promoH3;
-    document.getElementById('promo-p1').innerText = t.promoP1;
-    document.getElementById('promo-p2').innerText = t.promoP2;
-    document.getElementById('promo-p3').innerText = t.promoP3;
-    document.getElementById('promo-p4').innerText = t.promoP4;
-    document.getElementById('promo-p5').innerText = t.promoP5;
-    document.getElementById('promo-p6').innerText = t.promoP6;
-    document.getElementById('promo-p7').innerText = t.promoP7;
-    document.getElementById('promo-p8').innerText = t.promoP8;
-    document.getElementById('promo-p9').innerText = t.promoP9;
-    
-    // Dropdown options text translation
-    document.getElementById('opt-party').innerText = t.optParty;
-    document.getElementById('opt-wisuda').innerText = t.optWisuda;
-    document.getElementById('opt-lainnya').innerText = t.optLainnya;
-    document.getElementById('opt-wedding').innerText = t.optWedding;
-    document.getElementById('opt-prewedding').innerText = t.optPrewedding;
-    document.getElementById('opt-engagement').innerText = t.optEngagement;
-    document.getElementById('opt-rental').innerText = t.optRental;
-    document.getElementById('opt-weekdays').innerText = t.optWeekdays;
-    document.getElementById('opt-weekends').innerText = t.optWeekends;
-    document.getElementById('opt-dp1').innerText = t.optDp1;
-    document.getElementById('opt-dp2').innerText = t.optDp2;
-}
-
-// Jalankan translasi saat halaman dimuat
-applyTranslations(currentLang);
-
 // Atur tanggal minimum ke hari ini di sisi klien
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('tanggal').setAttribute('min', today);
@@ -522,22 +320,18 @@ waLogo.addEventListener('click', () => {
     waLogo.classList.add('pressed');
     setTimeout(() => { waLogo.classList.remove('pressed'); }, 150);
     setTimeout(() => {
-        const t = translations[currentLang] || translations['id'];
-        const text = encodeURIComponent(t.waText);
+        const text = encodeURIComponent("Form sudah saya isi dan kirim saya tunggu kabarnya selanjutnya yaa Kak");
         window.open(`https://wa.me/6281314798161?text=${text}`, '_blank');
     }, 300);
 });
 
-const scriptURL="https://script.google.com/macros/s/AKfycbxXi12uX6D47EgRea_oaDs9YE7mIlLWWH9F2QYTDVq6_SXH1lean4YQQwLysbwtE6vzTw/exec";
+const scriptURL="https://script.google.com/macros/s/AKfycbwvRHLYmF0bAE0kEC9PBYkfoKoF7WFJHUR49tFKGJ-yYUtHgwAPDDvHlhp3f7Ai6BMn/exec";
     
-
 const form = document.getElementById('bookingForm');
 const submitBtn = document.getElementById('submitBtn');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    const t = translations[currentLang] || translations['id'];
     
     // Validasi tambahan sebelum kirim data jika user mencoba memotong batasan HTML5
     const inputTanggal = document.getElementById('tanggal').value;
@@ -549,13 +343,14 @@ form.addEventListener('submit', async (e) => {
     tanggalPilihan.setHours(0,0,0,0);
     
     if (tanggalPilihan < hariIni) {
-        alert(t.alertPast);
+        alert('tanggal sudah berlalu.');
         return; // Menghentikan pengiriman data ke Google Sheet
     }
     
     submitBtn.disabled = true;
     
     const data = {
+        nama_mua: document.getElementById('nama_mua').value,
         nama: document.getElementById('nama').value,
         wa: document.getElementById('wa').value,
         tanggal: document.getElementById('tanggal').value,
@@ -565,12 +360,8 @@ form.addEventListener('submit', async (e) => {
         total_pax: document.getElementById('total_pax').value,
         retouch: document.getElementById('retouch').value,
         usia_45: document.getElementById('usia_45').value,
-        facelift: document.getElementById('facelift').value,
-        hairclip: document.getElementById('hairclip').value,
-        portfolio: document.getElementById('portfolio').value,
-        photoshoot: document.getElementById('photoshoot').value,
-        standby: document.getElementById('standby').value,
-        addtrial: document.getElementById('addtrial').value,
+        hair_clips: document.getElementById('hair_clips').value,
+        request_model: document.getElementById('request_model').value,
         pembayaran: document.getElementById('pembayaran').value,
         status: 'belum bayar',
     };
@@ -600,7 +391,7 @@ form.addEventListener('submit', async (e) => {
             }, 300000); // 5 menit dalam milidetik
         }
     } catch(error){
-        alert(t.alertError);
+        alert('Terjadi kesalahan.');
         console.log(error);
         submitBtn.disabled = false; // Aktifkan kembali jika error
     }
