@@ -76,6 +76,13 @@
       border-color: #00ffcc;
       box-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
     }
+
+    /* SPECIFIC CHANGE: Service Select Focus State */
+    #serviceSelect:focus {
+      background-color: #FF69B4; /* Hot Pink */
+      color: #FFFFFF;            /* Pure White */
+      border-color: #FF69B4;
+    }
     
     textarea { min-height: 86px; resize: vertical; }
     .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
@@ -184,11 +191,11 @@
       <div class="two-col">
         <div>
           <label>Nama Client</label>
-          <input id="clientName" required placeholder="Contoh: Clara" />
+          <input id="clientName" name="name" autocomplete="name" required placeholder="Contoh: Clara" />
         </div>
         <div>
           <label>Nomor WhatsApp</label>
-          <input id="whatsapp" required placeholder="Contoh: 08123456789" />
+          <input id="whatsapp" type="tel" name="tel" autocomplete="tel" required placeholder="Contoh: 08123456789" />
         </div>
         <div>
           <label>Tanggal Acara</label>
@@ -196,7 +203,7 @@
         </div>
         <div>
           <label>Jam Ready</label>
-          <input id="readyTime" type="time" required />
+          <input id="readyTime" type="time" step="60" required />
         </div>
       </div>
 
@@ -333,7 +340,7 @@ const services = {
     desc: "D-Day bride hairdo",
     price: 750000,
     included: [
-      "Free synthetic hairclip jika dibutuhkan dan menjadi hak milik",
+      "Free synthetic hairclip jika dibutuhkan and menjadi hak milik",
       "Konfirmasi warna hairclip max H-3 minggu sebelum acara",
       "Free transport radius 20 km",
       "Free touch-up kit"
@@ -632,6 +639,18 @@ function updateSummary() {
   totalText.textContent = rupiah(total);
 }
 
+// Fitur Kalender & Waktu Otomatis
+function initDateTimeConstraints() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  
+  // Membatasi agar tanggal yang lalu tidak bisa dipilih
+  const minDate = `${yyyy}-${mm}-${dd}`;
+  document.getElementById("eventDate").setAttribute("min", minDate);
+}
+
 document.getElementById("age").addEventListener("input", updateSummary);
 document.getElementById("transportArea").addEventListener("change", updateSummary);
 
@@ -679,8 +698,6 @@ document.getElementById("topLogo").addEventListener("click", function() {
     // Redirect to the URL after completion of the return animation
     setTimeout(() => {
       window.location.href ="https://hairdoby-ekkles.github.io/hairdo/";
-          
-          
     }, 120);
   }, 120);
 });
@@ -704,6 +721,7 @@ document.getElementById("waLogo").addEventListener("click", function() {
 });
 
 initServiceDropdown();
+initDateTimeConstraints();
 updateSummary();
 </script>
 </body>
