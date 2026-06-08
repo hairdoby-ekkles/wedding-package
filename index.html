@@ -1,448 +1,678 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Booking Hair Do by Ekkles</title>
-
-<style>
-:root{
-    --gold:#c5a059;
-    --dark:#111111;
-    --light:#ffffff;
-}
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    padding:0;
-    background:var(--dark);
-    color:var(--light);
-    font-family:Arial, sans-serif;
-    position: relative;
-}
-
-.top-left-logo {
-    position: absolute;
-    top: 20mm;
-    left: 0mm;
-    width: 20mm;
-    height: 20mm;
-    object-fit: contain;
-    cursor: pointer;
-    transition: top 0.15s ease-in-out; 
-}
-
-.top-left-logo.pressed {
-    top: 25mm;
-}
-
-.top-right-wa {
-    position: absolute;
-    top: 20mm;
-    right: 0mm;
-    width: 20mm;
-    height: 20mm;
-    object-fit: contain;
-    cursor: pointer;
-    transition: top 0.15s ease-in-out;
-}
-
-.top-right-wa.pressed {
-    top: 25mm;
-}
-
-.container{
-    width:95%;
-    max-width:700px;
-    margin:auto;
-    padding:20px;
-}
-
-h1{
-    text-align:center;
-    color:var(--gold);
-    letter-spacing:2px;
-    margin-top: 5mm;
-    margin-bottom: 10px;
-}
-
-.subtitle{
-    text-align:center;
-    margin-bottom:30px;
-    color:var(--gold);
-    font-size:150%;
-}
-
-.form-box{
-    margin-top: 15mm;
-    border:1px solid var(--gold);
-    border-radius:20px;
-    padding:25px;
-    background:#1a1a1a;
-}
-
-.form-box label{
-    display:block;
-    margin-top:15px;
-    margin-bottom:5px;
-    color:var(--gold);
-    font-size: 150%;
-}
-
-.form-box input,
-.form-box textarea,
-.form-box select{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:none;
-    font-size: 24px;
-}
-
-textarea{
-    min-height:100px;
-}
-
-button{
-    width:100%;
-    margin-top:25px;
-    padding:15px;
-    background:var(--gold);
-    border:none;
-    color:white;
-    font-size:18px;
-    border-radius:15px;
-    cursor:pointer;
-}
-
-button:hover{
-    opacity:0.9;
-}
-
-button:disabled {
-    background: #666;
-    cursor: not-allowed;
-}
-
-.success{
-    display:none;
-    margin-top:20px;
-    padding:15px;
-    border-radius:10px;
-    background:#1f4723;
-    color:#9cff9c;
-    text-align:center;
-}
-
-.footer{
-    text-align:center;
-    padding:30px;
-    color:#888;
-    font-size: 20px;
-}
-
-.cta-container {
-    text-align: center;
-    margin-top: 30px;
-    padding: 10px;
-}
-
-.cta-button {
-    display: inline-block;
-    width: max-content;
-    max-width: 100%;
-    padding: 12px 30px;
-    background: transparent;
-    border: 2px solid var(--gold);
-    color: var(--light);
-    font-size: 22.5px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-decoration: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-.cta-button:hover,
-.cta-button:active {
-    background: var(--gold);
-    color: var(--dark);
-}
-
-.promo-text {
-    margin-top: 25px;
-    font-size: 17.5px;
-    line-height: 1.6;
-    color: var(--light);
-}
-
-.promo-text h3 {
-    color: var(--gold);
-    margin-bottom: 15px;
-    font-size: 20px;
-    letter-spacing: 1px;
-}
-
-.promo-text p {
-    margin: 5px 0;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hairdo Form - Dropdown & Expandable Add-on</title>
+  <style>
+    * { box-sizing: border-box; }
+    
+    /* Base color: Black with subtle dark green/blue undertone */
+    body { 
+      margin: 0; 
+      font-family: 'Segoe UI', Arial, sans-serif; 
+      background: #060b0e; 
+      color: #ffffff; 
+    }
+    
+    /* Logo Styles */
+    #topLogo {
+      position: fixed;
+      top: 5px;
+      left: 5px;
+      width: 60px;
+      height: auto;
+      cursor: pointer;
+      z-index: 9999;
+      transition: transform 0.12s ease-in-out;
+    }
+    
+    /* WhatsApp Floating Button Style */
+    #waLogo {
+      position: fixed;
+      bottom: 8mm;
+      right: 5mm;
+      width: 50px;
+      height: auto;
+      cursor: pointer;
+      z-index: 9999;
+      transition: transform 0.12s ease-in-out;
+    }
+    
+    .wrap { max-width: 860px; margin: 28px auto; padding: 18px; }
+    
+    /* Card background: Deep Dark Green with thin electric blue undertones and gold border */
+    .card { 
+      background: #051412; 
+      border-radius: 24px; 
+      padding: 28px; 
+      box-shadow: 0 14px 40px rgba(0,0,0,.8), 0 0 0 1px rgba(0, 210, 255, 0.15); 
+      border: 1px solid #c8a96b; 
+    }
+    
+    h1 { margin: 0 0 8px; font-size: 28px; color: #ffffff; }
+    
+    h2 { 
+      margin: 30px 0 14px; 
+      font-size: 18px; 
+      color: #c8a96b;
+      border-bottom: 1px solid rgba(200, 169, 107, 0.3);
+      padding-bottom: 6px;
+    }
+    
+    p { color: #00d2ff; opacity: 0.85; line-height: 1.5; }
+    
+    label { display: block; margin: 13px 0 6px; font-weight: 700; font-size: 14px; color: #ffffff; }
+    
+    /* Input fields: Deep Forest Black/Green, Gold Border, White Text */
+    input, textarea, select {
+      width: 100%; border: 1px solid #c8a96b; border-radius: 14px;
+      padding: 12px 13px; font-size: 15px; background: #030e0c; color: #ffffff;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    
+    input:focus, textarea:focus, select:focus {
+      border-color: #00ffcc;
+      box-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
+    }
+    
+    textarea { min-height: 86px; resize: vertical; }
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    
+    .service-preview {
+      margin-top: 12px; padding: 14px; background: #030e0c;
+      border: 1px solid #c8a96b; border-radius: 16px;
+    }
+    
+    details {
+      border: 1px solid #c8a96b; border-radius: 18px; margin-bottom: 12px;
+      background: #051412; overflow: hidden;
+    }
+    
+    summary {
+      cursor: pointer; list-style: none; padding: 16px; font-weight: 800;
+      display: flex; justify-content: space-between; gap: 14px; align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 22px; color: #c8a96b; }
+    details[open] summary::after { content: "–"; }
+    
+    .addon-content { padding: 0 16px 16px; border-top: 1px solid rgba(200, 169, 107, 0.3); }
+    .addon-row { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; }
+    .addon-row input[type="checkbox"] { width: auto; margin-top: 3px; accent-color: #00ffcc; }
+    .addon-name { font-weight: 700; color: #ffffff; }
+    .addon-desc { color: #00d2ff; font-size: 13px; line-height: 1.45; margin-top: 3px; }
+    .addon-price { margin-left: auto; white-space: nowrap; font-weight: 700; color: #c8a96b; }
+    
+    .nested {
+      margin: 12px 0 0 28px; padding: 12px; background: #030e0c;
+      border-radius: 14px; border: 1px dashed #c8a96b;
+    }
+    
+    .hidden { display: none; }
+    
+    .pill {
+      display: inline-block; font-size: 12px; padding: 4px 8px;
+      border-radius: 999px; background: #082521; color: #00ffcc;
+      margin-left: 6px; font-weight: 700; border: 1px solid rgba(200, 169, 107, 0.3);
+    }
+    
+    .included { background: #030e0c; border-radius: 18px; padding: 14px 18px; border: 1px solid #c8a96b; }
+    .included ul { margin: 8px 0 0 18px; padding: 0; color: #ffffff; }
+    
+    .note {
+      background: #04201b; border: 1px solid #c8a96b;
+      padding: 12px 14px; border-radius: 14px; font-size: 14px;
+      color: #00ffcc; margin-top: 10px;
+    }
+    
+    .summary {
+      margin-top: 26px; background: #060b0e; color: #ffffff; border: 1px solid #c8a96b;
+      border-radius: 22px; padding: 20px; position: sticky; bottom: 12px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.8), 0 0 0 1px rgba(0, 210, 255, 0.1);
+    }
+    .summary h2 { margin-top: 0; color: #ffffff; }
+    .summary-row { display: flex; justify-content: space-between; gap: 14px; margin: 9px 0; color: #ffffff; }
+    .summary-row.muted { color: #00d2ff; opacity: 0.6; font-size: 14px; }
+    .total { border-top: 1px solid #c8a96b; padding-top: 14px; margin-top: 14px; font-size: 20px; font-weight: 800; color: #00ffcc; }
+    
+    /* Vibrant contemporary Green & Blue gradient button */
+    .btn {
+      width: 100%; border: 0; border-radius: 16px; padding: 15px;
+      margin-top: 18px; background: linear-gradient(135deg, #00ffcc, #00d2ff); color: #060b0e; font-size: 16px;
+      cursor: pointer; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+      transition: opacity 0.2s ease, transform 0.1s ease;
+    }
+    .btn:hover { opacity: 0.95; }
+    .btn:active { transform: scale(0.99); }
+    
+    pre { white-space: pre-wrap; background: #030e0c; border: 1px solid #c8a96b; color: #00ffcc; border-radius: 16px; padding: 16px; overflow: auto; font-size: 13px; }
+  </style>
 </head>
 
 <body>
 
-<img src="logo.png" alt="Logo By Ekkles" class="top-left-logo" id="logoEkkles">
-<img src="walogo.png" alt="WhatsApp" class="top-right-wa" id="waLogo">
+<img src="logo.png" id="topLogo" alt="Logo" />
 
-<div class="container">
-    <h1>WEDDING PACKAGE</h1>
-    <div class="subtitle">BOOKING HAIRDO</div>
+<img src="walogo.png" id="waLogo" alt="WhatsApp Support" />
 
-    <div class="form-box">
-        <form id="bookingForm">
+<div class="wrap">
+  <div class="card">
+    <h1>Hairdo Booking Inquiry</h1>
+    <p>Service dibuat dropdown. Setelah pilih service, client langsung melihat add-on yang relevan.</p>
 
-            <label id="label-nama">Nama Client</label>
-            <input type="text" id="nama" required>
+    <form id="bookingForm">
 
-            <label id="label-whatsapp">Nomor WhatsApp</label>
-            <input type="text" id="whatsapp" required>
+      <h2>1. Pilih Service</h2>
+      <label>Service yang dibutuhkan</label>
+      <select id="serviceSelect" required>
+        <option value="">-- Pilih service --</option>
+      </select>
+      <div id="servicePreview" class="service-preview hidden"></div>
 
-            <label id="label-tanggal">Tanggal Booking</label>
-            <input type="date" id="tanggal" required>
+      <h2>2. Add-on Opsional</h2>
+      <p id="addonIntro">Pilih service terlebih dahulu. Add-on akan muncul dalam bentuk expandable dropdown.</p>
+      <div id="addonPanel"></div>
 
-            <label id="label-jam">Jam Booking</label>
-            <input type="time" id="jam" required>
+      <h2>3. Included Benefit</h2>
+      <div class="included" id="includedBox">
+        <p>Pilih service terlebih dahulu untuk melihat benefit yang termasuk.</p>
+      </div>
 
-            <label id="label-lokasi">Lokasi Hairdo Dilakukan </label>
-            <textarea id="lokasi" required></textarea>
-
-            <label id="label-acara">Jenis Acara</label>
-            <select id="acara">
-                <option value="Party" id="opt-party">Party</option>
-				<option value="Wisuda" id="opt-wisuda">Wisuda</option>
-                <option value="Lainnya" id="opt-lainnya">Lainnya</option>
-                <option value="Wedding" id="opt-wedding">Wedding</option>
-                <option value="Prewedding" id="opt-prewedding">Prewedding</option>
-                <option value="Engagement" id="opt-engagement">Engagement</option>
-                </select>
-
-            <label id="label-pax">Total Pax</label>
-            <input type="number" id="total_pax" required>
-
-            <label id="label-retouch">Retouch</label>
-            <select id="retouch">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-
-            <label id="label-usia45">Di Atas 45 Tahun</label>
-            <select id="usia_45">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-
-            <label id="label-facelift">Facelift</label>
-            <select id="facelift">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-
-            <label id="label-hairclip">Hairclip</label>
-            <select id="hairclip">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option value="Rental" id="opt-rental">Rental</option>
-            </select>
-            
-            <label id="label-portfolio">Portfolio</label>
-            <select id="portfolio">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-
-            <label id="label-photoshoot">Photoshoot</label>
-            <select id="photoshoot">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-
-            <label id="label-standby">Stand by</label>
-            <select id="standby">
-                <option>0</option>
-				<option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-
-            <label id="label-addtrial">Add Trial</label>
-            <select id="addtrial">		
-			   <option value="Weekdays" id="opt-weekdays">Weekdays </option>
-               <option value="Weekends" id="opt-weekends">Weekends</option>
-			   </select>				
-				
-            <label id="label-pembayaran">Pembayaran</label>
-            <select id="pembayaran">
-                <option value="DP + Lunas" id="opt-dp1">DP + Lunas</option>
-                <option value="DP H-3 Lunas" id="opt-dp2">DP H-3 Lunas</option>
-            </select>
-
-           <button type="submit" id="submitBtn">KIRIM BOOKING</button>
-           </form>
-
-        <div class="success" id="successMessage">
-            Booking berhasil dikirim ✨
+      <h2>4. Detail Acara</h2>
+      <div class="two-col">
+        <div>
+          <label>Nama Client</label>
+          <input id="clientName" required placeholder="Contoh: Clara" />
         </div>
-    </div>
-
-    <div class="cta-container">
-        <a href="https://aban-007.github.io/hairdo-by-ekkles/" target="_blank" class="cta-button">FOLLOW OUR INSTAGRAM</a>
-        <div class="promo-text">
-            <h3>GRADUATION | BRIDESMAID | GUEST PARTY</h3>
-            <p>Certified hairstylist & hijabstylist</p>
-            <p>✨Suka share tutorial dan cerita menarik ttg rambut</p>
-            <p>🙋🏻‍♀️ OPEN SELF-PRO HAIRDO CLASS</p>
-            <p>PL/ availability👇🏻(Admin)</p>
+        <div>
+          <label>Nomor WhatsApp</label>
+          <input id="whatsapp" required placeholder="Contoh: 08123456789" />
         </div>
-    </div>
-</div>
+        <div>
+          <label>Tanggal Acara</label>
+          <input id="eventDate" type="date" required />
+        </div>
+        <div>
+          <label>Jam Ready</label>
+          <input id="readyTime" type="time" required />
+        </div>
+      </div>
 
-<div class="footer">
-    © 2024 HAIR DO by Ekkles. All Rights Reserved.
+      <label>Lokasi / Google Maps Link</label>
+      <textarea id="location" placeholder="Isi alamat lengkap atau paste link Google Maps"></textarea>
+
+      <div class="two-col">
+        <div>
+          <label>Usia Client</label>
+          <input id="age" type="number" min="1" placeholder="Contoh: 28" />
+        </div>
+        <div>
+          <label>Area Transport</label>
+          <select id="transportArea">
+            <option value="included">Area free transport / radius termasuk</option>
+            <option value="confirm">Di luar area, perlu konfirmasi biaya</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="autoNotes"></div>
+
+      <h2>5. Catatan / Request Model</h2>
+      <textarea id="notes" placeholder="Contoh: Korean wave, low bun, soft clean bun, membawa hairclip sendiri, dll"></textarea>
+
+      <div class="summary">
+        <h2>Booking Summary</h2>
+        <div id="summaryItems"></div>
+        <div class="summary-row total">
+          <span>Total Estimasi</span>
+          <span id="totalText">Rp0</span>
+        </div>
+      </div>
+
+      <button class="btn" type="submit">Submit Inquiry</button>
+    </form>
+
+    <h2>Output Data Submit</h2>
+    <pre id="output">Belum ada data submit.</pre>
+  </div>
 </div>
 
 <script>
-// Atur tanggal minimum ke hari ini di sisi klien
-const today = new Date().toISOString().split('T')[0];
-document.getElementById('tanggal').setAttribute('min', today);
+const services = {
+  regular: {
+    label: "Regular Occasion",
+    desc: "Graduation / Bridesmaid / Guest Party",
+    price: 300000,
+    included: ["Free aksesoris rambut sesuai ketersediaan", "Tidak termasuk hairclip"],
+    addonGroups: [
+      { title: "Touch-up During Event", subtitle: "Untuk client yang ingin rambut dicek / dirapikan lagi saat acara.", addons: [
+        { id: "retouch_regular", label: "Add retouch", price: 200000, desc: "Hairdo touch-up saat acara." }
+      ]},
+      { title: "Special Need", subtitle: "Tambahan yang hanya muncul jika diperlukan.", addons: [
+        { id: "facelift", label: "Add facelift tape", price: 100000, desc: "Opsional untuk hasil wajah lebih lifting." }
+      ]}
+    ]
+  },
+  special450: {
+    label: "Sis Wedding / Pageant Finalist",
+    desc: "Special Occasion",
+    price: 450000,
+    included: ["Free rent hairclip jika dibutuhkan", "Free aksesoris rambut sesuai ketersediaan"],
+    addonGroups: [
+      { title: "Touch-up During Event", subtitle: "Untuk acara panjang atau butuh retouch setelah sesi utama.", addons: [
+        { id: "retouch_special", label: "Add retouch", price: 200000, desc: "Hairdo touch-up saat acara." }
+      ]},
+      { title: "Special Need", subtitle: "Tambahan opsional sesuai kebutuhan client.", addons: [
+        { id: "facelift", label: "Add facelift tape", price: 100000, desc: "Opsional untuk hasil wajah lebih lifting." }
+      ]}
+    ]
+  },
+  sangjit: {
+    label: "Sangjit / Engagement / Sweet17",
+    desc: "Special Occasion",
+    price: 500000,
+    included: ["Free rent hairclip jika dibutuhkan", "Free aksesoris rambut sesuai ketersediaan"],
+    addonGroups: [
+      { title: "Touch-up During Event", subtitle: "Cocok jika ada pergantian sesi / foto / acara cukup panjang.", addons: [
+        { id: "retouch_special", label: "Add retouch", price: 200000, desc: "Hairdo touch-up saat acara." }
+      ]},
+      { title: "Special Need", subtitle: "Tambahan opsional sesuai kebutuhan client.", addons: [
+        { id: "facelift", label: "Add facelift tape", price: 100000, desc: "Opsional untuk hasil wajah lebih lifting." }
+      ]}
+    ]
+  },
+  portfolio: {
+    label: "Portfolio",
+    desc: "Per look",
+    price: 250000,
+    included: ["Harga per look"],
+    addonGroups: [
+      { title: "Special Need", subtitle: "Tambahan opsional sesuai kebutuhan look.", addons: [
+        { id: "facelift", label: "Add facelift tape", price: 100000, desc: "Opsional untuk hasil wajah lebih lifting." }
+      ]}
+    ]
+  },
+  photoshoot: {
+    label: "Photoshoot",
+    desc: "Self / Family / Prewedding",
+    price: 350000,
+    included: ["Free transport Gading Serpong, Alsut, Karawaci, BSD", "Free aksesoris rambut sesuai ketersediaan"],
+    addonGroups: [
+      { title: "Standby Photoshoot", subtitle: "Untuk photoshoot yang butuh ganti look atau hairdo dicek selama sesi.", addons: [
+        { id: "standby", label: "Add standby", price: 100000, desc: "Jika standby, jumlah look bebas.", perHour: true }
+      ]},
+      { title: "Special Need", subtitle: "Tambahan opsional sesuai kebutuhan client.", addons: [
+        { id: "facelift", label: "Add facelift tape", price: 100000, desc: "Opsional untuk hasil wajah lebih lifting." }
+      ]}
+    ]
+  },
+  bride: {
+    label: "Bride",
+    desc: "D-Day bride hairdo",
+    price: 750000,
+    included: [
+      "Free synthetic hairclip jika dibutuhkan dan menjadi hak milik",
+      "Konfirmasi warna hairclip max H-3 minggu sebelum acara",
+      "Free transport radius 20 km",
+      "Free touch-up kit"
+    ],
+    addonGroups: [
+      { title: "Retouch / Touch-up", subtitle: "Untuk bride yang ingin ada touch-up tambahan saat acara.", addons: [
+        { id: "retouch_bride", label: "Add bride retouch", price: 450000, desc: "Retouch untuk bride saat acara." }
+      ]},
+      { title: "Trial Session", subtitle: "Trial hanya weekdays. Jika weekend ada tambahan biaya.", addons: [
+        { id: "trial_weekday", label: "Add trial weekdays", price: 400000, desc: "Trial hairdo di hari kerja." },
+        { id: "trial_weekend_fee", label: "Trial di weekend", price: 300000, desc: "Tambahan biaya jika trial dilakukan saat weekend.", requires: "trial_weekday" }
+      ]}
+    ]
+  },
+  mom_engagement: {
+    label: "Mom Engagement / Bday / Anniversary",
+    desc: "Mom hairdo",
+    price: 450000,
+    included: ["Free aksesoris rambut sesuai ketersediaan"],
+    addonGroups: [
+      { title: "Touch-up During Event", subtitle: "Untuk mom yang membutuhkan touch-up saat acara.", addons: [
+        { id: "retouch_mom", label: "Add retouch", price: 250000, desc: "Hairdo touch-up saat acara." }
+      ]},
+      { title: "Special Need", subtitle: "Tambahan opsional sesuai kebutuhan client.", addons: [
+        { id: "facelift", label: "Add facelift tape", price: 100000, desc: "Opsional untuk hasil wajah lebih lifting." }
+      ]}
+    ]
+  },
+  mom_bride: {
+    label: "Mom Bride / Groom D-Day",
+    desc: "Mom wedding day hairdo",
+    price: 500000,
+    included: ["Free aksesoris rambut sesuai ketersediaan"],
+    addonGroups: [
+      { title: "Touch-up During Event", subtitle: "Untuk mom yang membutuhkan touch-up saat acara.", addons: [
+        { id: "retouch_mom", label: "Add retouch", price: 250000, desc: "Hairdo touch-up saat acara." }
+      ]},
+      { title: "Special Need", subtitle: "Tambahan opsional sesuai kebutuhan client.", addons: [
+        { id: "facelift", label: "Add facelift tape", price: 100000, desc: "Opsional untuk hasil wajah lebih lifting." }
+      ]}
+    ]
+  }
+};
 
-const logo = document.getElementById('logoEkkles');
-logo.addEventListener('click', () => {
-    logo.classList.add('pressed');
-    setTimeout(() => { logo.classList.remove('pressed'); }, 150);
-    setTimeout(() => { window.location.href = "https://aban-007.github.io/hairdo-by-ekkles/"; }, 300);
+let selectedServiceId = "";
+
+const rupiah = (n) => new Intl.NumberFormat("id-ID", {
+  style: "currency", currency: "IDR", maximumFractionDigits: 0
+}).format(n);
+
+function initServiceDropdown() {
+  const select = document.getElementById("serviceSelect");
+
+  Object.entries(services).forEach(([id, service]) => {
+    const opt = document.createElement("option");
+    opt.value = id;
+    opt.textContent = `${service.label} - ${service.desc} (${rupiah(service.price)})`;
+    select.appendChild(opt);
+  });
+
+  select.addEventListener("change", () => {
+    selectedServiceId = select.value;
+    clearAddons();
+    renderServicePreview();
+    renderAddons();
+    renderIncluded();
+    updateSummary();
+  });
+}
+
+function renderServicePreview() {
+  const preview = document.getElementById("servicePreview");
+
+  if (!selectedServiceId) {
+    preview.classList.add("hidden");
+    preview.innerHTML = "";
+    return;
+  }
+
+  const service = services[selectedServiceId];
+  preview.classList.remove("hidden");
+  preview.innerHTML = `
+    <strong>${service.label}</strong><br>
+    <span style="color:#00d2ff; opacity:0.85;">${service.desc}</span><br>
+    <strong style="color:#00ffcc;">${rupiah(service.price)}</strong>
+  `;
+}
+
+function clearAddons() {
+  document.getElementById("addonPanel").innerHTML = "";
+}
+
+function renderAddons() {
+  const panel = document.getElementById("addonPanel");
+  const intro = document.getElementById("addonIntro");
+  panel.innerHTML = "";
+
+  if (!selectedServiceId) {
+    intro.textContent = "Pilih service terlebih dahulu. Add-on akan muncul dalam bentuk expandable dropdown.";
+    return;
+  }
+
+  intro.textContent = "Buka kategori add-on yang dibutuhkan saja. Add-on lain tetap tersembunyi agar form lebih clean.";
+
+  const service = services[selectedServiceId];
+
+  service.addonGroups.forEach((group, index) => {
+    const details = document.createElement("details");
+    if (index === 0) details.open = true;
+
+    details.innerHTML = `
+      <summary><span>${group.title}<span class="pill">Optional</span></span></summary>
+      <div class="addon-content">
+        <p class="addon-desc">${group.subtitle}</p>
+        <div class="addon-list"></div>
+      </div>
+    `;
+
+    const list = details.querySelector(".addon-list");
+
+    group.addons.forEach(addon => {
+      const row = document.createElement("div");
+      row.className = "addon-row";
+      row.dataset.requires = addon.requires || "";
+
+      row.innerHTML = `
+        <input
+          type="checkbox"
+          class="addon-check"
+          id="${addon.id}"
+          data-id="${addon.id}"
+          data-label="${addon.label}"
+          data-price="${addon.price}"
+          data-perhour="${addon.perHour ? "yes" : "no"}"
+          data-requires="${addon.requires || ""}"
+        />
+        <div style="flex:1;">
+          <div class="addon-name">${addon.label}</div>
+          <div class="addon-desc">${addon.desc}</div>
+          ${addon.perHour ? `
+            <div class="nested hidden" data-hour-box="${addon.id}">
+              <label>Jumlah jam standby</label>
+              <input type="number" class="hour-input" data-for="${addon.id}" value="1" min="1" />
+            </div>
+          ` : ""}
+        </div>
+        <div class="addon-price">${addon.perHour ? rupiah(addon.price) + " / jam" : "+" + rupiah(addon.price)}</div>
+      `;
+
+      list.appendChild(row);
+    });
+
+    panel.appendChild(details);
+  });
+
+  bindAddonEvents();
+  applyDependencyVisibility();
+}
+
+function bindAddonEvents() {
+  document.querySelectorAll(".addon-check").forEach(cb => {
+    cb.addEventListener("change", () => {
+      const hourBox = document.querySelector(`[data-hour-box="${cb.dataset.id}"]`);
+      if (hourBox) hourBox.classList.toggle("hidden", !cb.checked);
+      applyDependencyVisibility();
+      updateSummary();
+    });
+  });
+
+  document.querySelectorAll(".hour-input").forEach(input => {
+    input.addEventListener("input", updateSummary);
+  });
+}
+
+function applyDependencyVisibility() {
+  document.querySelectorAll("[data-requires]").forEach(row => {
+    const requiredId = row.dataset.requires;
+    if (!requiredId) return;
+
+    const requiredInput = document.getElementById(requiredId);
+    const show = requiredInput && requiredInput.checked;
+
+    row.classList.toggle("hidden", !show);
+
+    if (!show) {
+      const cb = row.querySelector(".addon-check");
+      if (cb) cb.checked = false;
+    }
+  });
+}
+
+function renderIncluded() {
+  const box = document.getElementById("includedBox");
+
+  if (!selectedServiceId) {
+    box.innerHTML = "<p>Pilih service terlebih dahulu untuk melihat benefit yang termasuk.</p>";
+    return;
+  }
+
+  const items = services[selectedServiceId].included.map(item => `<li>${item}</li>`).join("");
+  box.innerHTML = `<strong>Included:</strong><ul>${items}</ul>`;
+}
+
+function matureFee() {
+  const age = Number(document.getElementById("age").value || 0);
+  if (selectedServiceId === "regular" && age > 45) return 50000;
+  return 0;
+}
+
+function renderAutoNotes() {
+  const box = document.getElementById("autoNotes");
+  let html = "";
+
+  if (matureFee() > 0) {
+    html += `<div class="note">Mature fee +50k otomatis ditambahkan karena usia client di atas 45 tahun.</div>`;
+  }
+
+  if (document.getElementById("transportArea").value === "confirm") {
+    html += `<div class="note">Lokasi di luar area free transport. Biaya transport perlu dikonfirmasi manual.</div>`;
+  }
+
+  box.innerHTML = html;
+}
+
+function selectedAddons() {
+  const arr = [];
+
+  document.querySelectorAll(".addon-check:checked").forEach(cb => {
+    let qty = 1;
+    let price = Number(cb.dataset.price);
+
+    if (cb.dataset.perhour === "yes") {
+      const hourInput = document.querySelector(`.hour-input[data-for="${cb.dataset.id}"]`);
+      qty = Math.max(1, Number(hourInput.value || 1));
+      price = price * qty;
+    }
+
+    arr.push({ id: cb.dataset.id, label: cb.dataset.label, qty, price });
+  });
+
+  return arr;
+}
+
+function updateSummary() {
+  renderAutoNotes();
+
+  const box = document.getElementById("summaryItems");
+  const totalText = document.getElementById("totalText");
+
+  box.innerHTML = "";
+  let total = 0;
+
+  if (!selectedServiceId) {
+    box.innerHTML = `<div class="summary-row muted"><span>Belum pilih service</span><span>-</span></div>`;
+    totalText.textContent = rupiah(0);
+    return;
+  }
+
+  const service = services[selectedServiceId];
+  total += service.price;
+
+  box.innerHTML += `<div class="summary-row"><span>${service.label}</span><span>${rupiah(service.price)}</span></div>`;
+
+  const mFee = matureFee();
+  if (mFee > 0) {
+    total += mFee;
+    box.innerHTML += `<div class="summary-row"><span>Mature fee > 45 tahun</span><span>${rupiah(mFee)}</span></div>`;
+  }
+
+  selectedAddons().forEach(addon => {
+    total += addon.price;
+    box.innerHTML += `
+      <div class="summary-row">
+        <span>${addon.label}${addon.qty > 1 ? " x " + addon.qty : ""}</span>
+        <span>${rupiah(addon.price)}</span>
+      </div>
+    `;
+  });
+
+  if (document.getElementById("transportArea").value === "confirm") {
+    box.innerHTML += `<div class="summary-row muted"><span>Transport luar area</span><span>Confirm</span></div>`;
+  }
+
+  totalText.textContent = rupiah(total);
+}
+
+document.getElementById("age").addEventListener("input", updateSummary);
+document.getElementById("transportArea").addEventListener("change", updateSummary);
+
+document.getElementById("bookingForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (!selectedServiceId) {
+    alert("Silakan pilih service terlebih dahulu.");
+    return;
+  }
+
+  const service = services[selectedServiceId];
+  const addons = selectedAddons();
+  const mFee = matureFee();
+  const total = service.price + mFee + addons.reduce((s, a) => s + a.price, 0);
+
+  const payload = {
+    client_name: document.getElementById("clientName").value,
+    whatsapp: document.getElementById("whatsapp").value,
+    event_date: document.getElementById("eventDate").value,
+    ready_time: document.getElementById("readyTime").value,
+    location: document.getElementById("location").value,
+    age: document.getElementById("age").value,
+    transport_area: document.getElementById("transportArea").value,
+    service: { id: selectedServiceId, label: service.label, price: service.price },
+    addons,
+    auto_fee: { mature_fee: mFee },
+    estimated_total: total,
+    notes: document.getElementById("notes").value
+  };
+
+  document.getElementById("output").textContent = JSON.stringify(payload, null, 2);
+  alert("Inquiry berhasil dibuat. Data bisa dilihat di bagian Output.");
 });
 
-const waLogo = document.getElementById('waLogo');
-waLogo.addEventListener('click', () => {
-    waLogo.classList.add('pressed');
-    setTimeout(() => { waLogo.classList.remove('pressed'); }, 150);
+// Interactive Logo Logic
+document.getElementById("topLogo").addEventListener("click", function() {
+  // Move down by 8px
+  this.style.transform = "translateY(8px)";
+  
+  // Return back up after 120ms
+  setTimeout(() => {
+    this.style.transform = "translateY(0)";
+    
+    // Redirect to the URL after completion of the return animation
     setTimeout(() => {
-        const text = encodeURIComponent("Form sudah saya isi dan kirim saya tunggu kabarnya selanjutnya yaa Kak");
-        window.open(`https://wa.me/6281314798161?text=${text}`, '_blank');
-    }, 300);
+      window.location.href ="https://hairdoby-ekkles.github.io/hairdo/";
+          
+          
+    }, 120);
+  }, 120);
 });
 
-const scriptURL="https://script.google.com/macros/s/AKfycbzx5nb2Zz-DOwhPYYeuAQQ12nnkB-cpXPIYJCoG2pzE_CMSJZuhyEyzOcuTJjl4Bw2nlA/exec";
+// Interactive WhatsApp Logo Logic
+document.getElementById("waLogo").addEventListener("click", function() {
+  // Move up by 5mm (approx. -19px given standard web specs)
+  this.style.transform = "translateY(-19px)";
+  
+  // Return back down after 120ms
+  setTimeout(() => {
+    this.style.transform = "translateY(0)";
     
-   
-    
-   
-    
-const form = document.getElementById('bookingForm');
-const submitBtn = document.getElementById('submitBtn');
-
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Validasi tambahan sebelum kirim data jika user mencoba memotong batasan HTML5
-    const inputTanggal = document.getElementById('tanggal').value;
-    const tanggalPilihan = new Date(inputTanggal);
-    const hariIni = new Date();
-    
-    // Set jam, menit, detik ke 0 untuk membandingkan tanggal murni
-    hariIni.setHours(0,0,0,0);
-    tanggalPilihan.setHours(0,0,0,0);
-    
-    if (tanggalPilihan < hariIni) {
-        alert('tanggal sudah berlalu.');
-        return; // Menghentikan pengiriman data ke Google Sheet
-    }
-    
-    submitBtn.disabled = true;
-    
-    const data = {
-
-nama: document.getElementById('nama').value,
-        whatsapp: document.getElementById('whatsapp').value,
-        tanggal: document.getElementById('tanggal').value,
-        jam: document.getElementById('jam').value,
-        lokasi: document.getElementById('lokasi').value,
-        acara: document.getElementById('acara').value,
-        total_pax: document.getElementById('total_pax').value,
-        retouch: document.getElementById('retouch').value,
-        usia_45: document.getElementById('usia_45').value,
-        facelift: document.getElementById('facelift').value,
-        hairclip: document.getElementById('hairclip').value,
-        portfolio: document.getElementById('portfolio').value,
-        photoshoot: document.getElementById('photoshoot').value,
-        standby: document.getElementById('standby').value,
-        addtrial: document.getElementById('addtrial').value,
-        pembayaran: document.getElementById('pembayaran').value,
-        status: 'belum bayar',
-    };
-    
-
-    try {
-        const response = await fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify(data)
-        });
-        const result = await response.json();
-        if(result.result === 'success'){
-            // Tampilkan pesan sukses
-            document.getElementById('successMessage').style.display = 'block';
-            form.reset();
-            
-            // Atur kembali min date setelah form di-reset
-            document.getElementById('tanggal').setAttribute('min', today);
-            
-            // Tunggu 5 detik lalu redirect
-            setTimeout(() => {
-                window.location.href = "https://aban-007.github.io/hairdo-by-ekkles/";
-            }, 5000);
-            
-            // Disable tombol selama 5 menit
-            setTimeout(() => {
-                submitBtn.disabled = false;
-            }, 300000); // 5 menit dalam milidetik
-        }
-    } catch(error){
-        alert('Terjadi kesalahan.');
-        console.log(error);
-        submitBtn.disabled = false; // Aktifkan kembali jika error
-    }
+    // Trigger WhatsApp redirect after return animation completes
+    setTimeout(() => {
+      const phoneNumber = "6281314798161";
+      const textMessage = "Hello Sis, I have filled out the form and submitted the inquiry";
+      window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(textMessage)}`;
+    }, 120);
+  }, 120);
 });
+
+initServiceDropdown();
+updateSummary();
 </script>
 </body>
 </html>
