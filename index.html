@@ -27,11 +27,11 @@
       transition: transform 0.12s ease-in-out;
     }
     
-    /* WhatsApp Floating Button Style */
+    /* WhatsApp Floating Button Style - Moved to top parallel to logo */
     #waLogo {
       position: fixed;
-      bottom: 8mm;
-      right: 5mm;
+      top: 5px;
+      right: 5px;
       width: 50px;
       height: auto;
       cursor: pointer;
@@ -159,7 +159,7 @@
 
 <div class="wrap">
   <div class="card">
-    <h1>Hairdo Booking Inquiry</h1>
+    <h1>Hairdo Booking By.Ekkles</h1>
     <p>Service dibuat dropdown. Setelah pilih service, client langsung melihat add-on yang relevan.</p>
 
     <form id="bookingForm">
@@ -247,6 +247,10 @@ const services = {
     price: 300000,
     included: ["Free aksesoris rambut sesuai ketersediaan", "Tidak termasuk hairclip"],
     addonGroups: [
+      { title: "Hairclip Rental", subtitle: "Pengembalian hairclip maksimal H+3 setelah acara, dana deposit akan dikembalikan penuh.", addons: [
+        { id: "synthetic_hair_rental", label: "Synthetic Hair Rental", price: 200000, desc: "Price per Pax Rp. 100,000 + Deposit Rp. 100,000" },
+        { id: "original_hair_rental", label: "Original Hair Rental", price: 2000000, desc: "Price per Pax Rp. 500,000 + Deposit Rp. 1,500,000" }
+      ]},
       { title: "Touch-up During Event", subtitle: "Untuk client yang ingin rambut dicek / dirapikan lagi saat acara.", addons: [
         { id: "retouch_regular", label: "Add retouch", price: 200000, desc: "Hairdo touch-up saat acara." }
       ]},
@@ -261,6 +265,10 @@ const services = {
     price: 450000,
     included: ["Free rent hairclip jika dibutuhkan", "Free aksesoris rambut sesuai ketersediaan"],
     addonGroups: [
+      { title: "Hairclip Rental", subtitle: "Pengembalian hairclip maksimal H+3 setelah acara, dana deposit akan dikembalikan penuh.", addons: [
+        { id: "synthetic_hair_rental", label: "Synthetic Hair Rental", price: 200000, desc: "Price per Pax Rp. 100,000 + Deposit Rp. 100,000" },
+        { id: "original_hair_rental", label: "Original Hair Rental", price: 2000000, desc: "Price per Pax Rp. 500,000 + Deposit Rp. 1,500,000" }
+      ]},
       { title: "Touch-up During Event", subtitle: "Untuk acara panjang atau butuh retouch setelah sesi utama.", addons: [
         { id: "retouch_special", label: "Add retouch", price: 200000, desc: "Hairdo touch-up saat acara." }
       ]},
@@ -275,6 +283,10 @@ const services = {
     price: 500000,
     included: ["Free rent hairclip jika dibutuhkan", "Free aksesoris rambut sesuai ketersediaan"],
     addonGroups: [
+      { title: "Hairclip Rental", subtitle: "Pengembalian hairclip maksimal H+3 setelah acara, dana deposit akan dikembalikan penuh.", addons: [
+        { id: "synthetic_hair_rental", label: "Synthetic Hair Rental", price: 200000, desc: "Price per Pax Rp. 100,000 + Deposit Rp. 100,000" },
+        { id: "original_hair_rental", label: "Original Hair Rental", price: 2000000, desc: "Price per Pax Rp. 500,000 + Deposit Rp. 1,500,000" }
+      ]},
       { title: "Touch-up During Event", subtitle: "Cocok jika ada pergantian sesi / foto / acara cukup panjang.", addons: [
         { id: "retouch_special", label: "Add retouch", price: 200000, desc: "Hairdo touch-up saat acara." }
       ]},
@@ -289,6 +301,10 @@ const services = {
     price: 250000,
     included: ["Harga per look"],
     addonGroups: [
+      { title: "Hairclip Rental", subtitle: "Pengembalian hairclip maksimal H+3 setelah acara, dana deposit akan dikembalikan penuh.", addons: [
+        { id: "synthetic_hair_rental", label: "Synthetic Hair Rental", price: 200000, desc: "Price per Pax Rp. 100,000 + Deposit Rp. 100,000" },
+        { id: "original_hair_rental", label: "Original Hair Rental", price: 2000000, desc: "Price per Pax Rp. 500,000 + Deposit Rp. 1,500,000" }
+      ]},
       { title: "Special Need", subtitle: "Tambahan opsional sesuai kebutuhan look.", addons: [
         { id: "facelift", label: "Add facelift tape", price: 100000, desc: "Opsional untuk hasil wajah lebih lifting." }
       ]}
@@ -300,6 +316,10 @@ const services = {
     price: 350000,
     included: ["Free transport Gading Serpong, Alsut, Karawaci, BSD", "Free aksesoris rambut sesuai ketersediaan"],
     addonGroups: [
+      { title: "Hairclip Rental", subtitle: "Pengembalian hairclip maksimal H+3 setelah acara, dana deposit akan dikembalikan penuh.", addons: [
+        { id: "synthetic_hair_rental", label: "Synthetic Hair Rental", price: 200000, desc: "Price per Pax Rp. 100,000 + Deposit Rp. 100,000" },
+        { id: "original_hair_rental", label: "Original Hair Rental", price: 2000000, desc: "Price per Pax Rp. 500,000 + Deposit Rp. 1,500,000" }
+      ]},
       { title: "Standby Photoshoot", subtitle: "Untuk photoshoot yang butuh ganti look atau hairdo dicek selama sesi.", addons: [
         { id: "standby", label: "Add standby", price: 100000, desc: "Jika standby, jumlah look bebas.", perHour: true }
       ]},
@@ -319,6 +339,10 @@ const services = {
       "Free touch-up kit"
     ],
     addonGroups: [
+      { title: "Hairclip Rental", subtitle: "Pengembalian hairclip maksimal H+3 setelah acara, dana deposit akan dikembalikan penuh.", addons: [
+        { id: "synthetic_hair_rental", label: "Synthetic Hair Rental", price: 200000, desc: "Price per Pax Rp. 100,000 + Deposit Rp. 100,000" },
+        { id: "original_hair_rental", label: "Original Hair Rental", price: 2000000, desc: "Price per Pax Rp. 500,000 + Deposit Rp. 1,500,000" }
+      ]},
       { title: "Retouch / Touch-up", subtitle: "Untuk bride yang ingin ada touch-up tambahan saat acara.", addons: [
         { id: "retouch_bride", label: "Add bride retouch", price: 450000, desc: "Retouch untuk bride saat acara." }
       ]},
@@ -334,6 +358,10 @@ const services = {
     price: 450000,
     included: ["Free aksesoris rambut sesuai ketersediaan"],
     addonGroups: [
+      { title: "Hairclip Rental", subtitle: "Pengembalian hairclip maksimal H+3 setelah acara, dana deposit akan dikembalikan penuh.", addons: [
+        { id: "synthetic_hair_rental", label: "Synthetic Hair Rental", price: 200000, desc: "Price per Pax Rp. 100,000 + Deposit Rp. 100,000" },
+        { id: "original_hair_rental", label: "Original Hair Rental", price: 2000000, desc: "Price per Pax Rp. 500,000 + Deposit Rp. 1,500,000" }
+      ]},
       { title: "Touch-up During Event", subtitle: "Untuk mom yang membutuhkan touch-up saat acara.", addons: [
         { id: "retouch_mom", label: "Add retouch", price: 250000, desc: "Hairdo touch-up saat acara." }
       ]},
@@ -348,6 +376,10 @@ const services = {
     price: 500000,
     included: ["Free aksesoris rambut sesuai ketersediaan"],
     addonGroups: [
+      { title: "Hairclip Rental", subtitle: "Pengembalian hairclip maksimal H+3 setelah acara, dana deposit akan dikembalikan penuh.", addons: [
+        { id: "synthetic_hair_rental", label: "Synthetic Hair Rental", price: 200000, desc: "Price per Pax Rp. 100,000 + Deposit Rp. 100,000" },
+        { id: "original_hair_rental", label: "Original Hair Rental", price: 2000000, desc: "Price per Pax Rp. 500,000 + Deposit Rp. 1,500,000" }
+      ]},
       { title: "Touch-up During Event", subtitle: "Untuk mom yang membutuhkan touch-up saat acara.", addons: [
         { id: "retouch_mom", label: "Add retouch", price: 250000, desc: "Hairdo touch-up saat acara." }
       ]},
