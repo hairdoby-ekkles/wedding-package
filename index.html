@@ -194,7 +194,6 @@
 <div class="wrap">
   <div class="card">
     <h1>Hairdo Booking By.Ekkles</h1>
-    <p>Service dibuat dropdown. Setelah pilih service, client langsung melihat add-on yang relevan.</p>
 
     <form id="bookingForm">
 
@@ -387,7 +386,8 @@ const services = {
         { id: "original_hair_rental", label: "Original Hair Rental", price: 2000000, desc: "Price per Pax Rp. 500,000 + Deposit Rp. 1,500,000" }
       ]},
       { title: "Retouch / Touch-up", subtitle: "Untuk bride yang ingin ada touch-up tambahan saat acara.", addons: [
-        { id: "retouch_bride", label: "Add bride retouch", price: 450000, desc: "Retouch untuk bride saat acara." }
+        { id: "retouch_bride_1time", label: "Retouch 1 time", price: 450000, desc: "For dinner events" },
+        { id: "retouch_bride_hourly", label: "Retouch following the bride until the event is finished", price: 300000, desc: "Per hour until the event is finished", perHour: true }
       ]},
       { title: "Trial Session", subtitle: "Trial hanya weekdays. Jika weekend ada tambahan biaya.", addons: [
         { id: "trial_weekday", label: "Add trial weekdays", price: 400000, desc: "Trial hairdo di hari kerja." },
@@ -491,7 +491,7 @@ function renderAddons() {
     return;
   }
 
-  intro.textContent = "Buka kategori add-on yang dibutuhkan saja. Add-on lain tetap tersembunyi agar form lebih clean.";
+  intro.textContent = "Buka kategori add-on yang dibutuhkan saja. tekan + dan sentuh kotak sesuai pilihan.";
 
   const service = services[selectedServiceId];
 
