@@ -12,6 +12,7 @@
       font-family: 'Segoe UI', Arial, sans-serif; 
       background: #060b0e; 
       color: #ffffff; 
+      font-size: 20px; /* Diperbesar ke 125% */
     }
     
     .logo-container {
@@ -24,14 +25,14 @@
     }
 
     #topLogo {
-      width: 60px;
+      width: 75px; /* Diperbesar ke 125% (60px * 1.25) */
       height: auto;
       cursor: pointer;
       transition: transform 0.12s ease-in-out;
     }
     
     #waLogo {
-      width: 50px;
+      width: 63px; /* Diperbesar ke 125% (50px * 1.25) */
       height: auto;
       cursor: pointer;
       transition: transform 0.12s ease-in-out;
@@ -51,11 +52,11 @@
       border: 1px solid #c8a96b; 
     }
     
-    h1 { margin: 0 0 8px; font-size: 28px; color: #ffffff; }
+    h1 { margin: 0 0 8px; font-size: 35px; color: #ffffff; } /* Diperbesar ke 125% (28px * 1.25) */
     
     h2 { 
       margin: 30px 0 14px; 
-      font-size: 18px; 
+      font-size: 23px; /* Diperbesar ke 125% (18px * 1.25) */
       color: #c8a96b;
       border-bottom: 1px solid rgba(200, 169, 107, 0.3);
       padding-bottom: 6px;
@@ -63,11 +64,11 @@
     
     p { color: #00d2ff; opacity: 0.85; line-height: 1.5; }
     
-    label { display: block; margin: 13px 0 6px; font-weight: 700; font-size: 14px; color: #ffffff; }
+    label { display: block; margin: 13px 0 6px; font-weight: 700; font-size: 18px; color: #ffffff; } /* Diperbesar ke 125% (14px * 1.25) */
     
     input, textarea, select {
       width: 100%; border: 1px solid #c8a96b; border-radius: 14px;
-      padding: 12px 13px; font-size: 15px; background: #030e0c; color: #ffffff;
+      padding: 12px 13px; font-size: 19px; background: #030e0c; color: #ffffff; /* Diperbesar ke 125% (15px * 1.25) */
       outline: none;
       transition: all 0.3s ease;
     }
@@ -101,14 +102,14 @@
       display: flex; justify-content: space-between; gap: 14px; align-items: center;
     }
     summary::-webkit-details-marker { display: none; }
-    summary::after { content: "+"; font-size: 22px; color: #c8a96b; }
+    summary::after { content: "+"; font-size: 28px; color: #c8a96b; } /* Diperbesar ke 125% (22px * 1.25) */
     details[open] summary::after { content: "–"; }
     
     .addon-content { padding: 0 16px 16px; border-top: 1px solid rgba(200, 169, 107, 0.3); }
     .addon-row { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; }
     .addon-row input[type="checkbox"] { width: auto; margin-top: 3px; accent-color: #00ffcc; }
     .addon-name { font-weight: 700; color: #ffffff; }
-    .addon-desc { color: #00d2ff; font-size: 13px; line-height: 1.45; margin-top: 3px; }
+    .addon-desc { color: #00d2ff; font-size: 16px; line-height: 1.45; margin-top: 3px; } /* Diperbesar ke 125% (13px * 1.25) */
     .addon-price { margin-left: auto; white-space: nowrap; font-weight: 700; color: #c8a96b; }
     
     .nested {
@@ -119,7 +120,7 @@
     .hidden { display: none; }
     
     .pill {
-      display: inline-block; font-size: 12px; padding: 4px 8px;
+      display: inline-block; font-size: 15px; padding: 4px 8px; /* Diperbesar ke 125% (12px * 1.25) */
       border-radius: 999px; background: #082521; color: #00ffcc;
       margin-left: 6px; font-weight: 700; border: 1px solid rgba(200, 169, 107, 0.3);
     }
@@ -129,7 +130,7 @@
     
     .note {
       background: #04201b; border: 1px solid #c8a96b;
-      padding: 12px 14px; border-radius: 14px; font-size: 14px;
+      padding: 12px 14px; border-radius: 14px; font-size: 18px; /* Diperbesar ke 125% (14px * 1.25) */
       color: #00ffcc; margin-top: 10px;
     }
     
@@ -140,12 +141,12 @@
     }
     .summary h2 { margin-top: 0; color: #ffffff; }
     .summary-row { display: flex; justify-content: space-between; gap: 14px; margin: 9px 0; color: #ffffff; }
-    .summary-row.muted { color: #00d2ff; opacity: 0.6; font-size: 14px; }
-    .total { border-top: 1px solid #c8a96b; padding-top: 14px; margin-top: 14px; font-size: 20px; font-weight: 800; color: #00ffcc; }
+    .summary-row.muted { color: #00d2ff; opacity: 0.6; font-size: 18px; } /* Diperbesar ke 125% (14px * 1.25) */
+    .total { border-top: 1px solid #c8a96b; padding-top: 14px; margin-top: 14px; font-size: 25px; font-weight: 800; color: #00ffcc; } /* Diperbesar ke 125% (20px * 1.25) */
     
     .btn {
       width: 100%; border: 0; border-radius: 16px; padding: 15px;
-      margin-top: 18px; background: linear-gradient(135deg, #00ffcc, #00d2ff); color: #060b0e; font-size: 16px;
+      margin-top: 18px; background: linear-gradient(135deg, #00ffcc, #00d2ff); color: #060b0e; font-size: 20px; /* Diperbesar ke 125% (16px * 1.25) */
       cursor: pointer; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
       transition: opacity 0.2s ease, transform 0.1s ease;
     }
@@ -155,7 +156,7 @@
     .success {
       display: none; background: #04201b; border: 2px solid #00ffcc;
       color: #00ffcc; border-radius: 16px; padding: 20px;
-      text-align: center; font-weight: 700; font-size: 16px; margin-top: 20px;
+      text-align: center; font-weight: 700; font-size: 20px; margin-top: 20px; /* Diperbesar ke 125% (16px * 1.25) */
       box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
       animation: fadeIn 0.4s ease-in-out forwards;
     }
@@ -513,7 +514,7 @@ function renderAddons() {
                 <div><label>Event Start Time</label><input type="time" class="start-time" data-for="${addon.id}"></div>
                 <div><label>Event End Time</label><input type="time" class="end-time" data-for="${addon.id}"></div>
               </div>
-              <div class="note" style="margin-top:10px; font-size:12px;" id="calcNote-${addon.id}">Fill times to calculate hours.</div>
+              <div class="note" style="margin-top:10px; font-size:15px;" id="calcNote-${addon.id}">Fill times to calculate hours.</div>
             </div>
           ` : ""}
         </div>
