@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -161,6 +161,65 @@
       animation: fadeIn 0.4s ease-in-out forwards;
     }
 
+    /* Instagram CTA Button Styles */
+    .cta-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px auto 40px;
+      padding: 0 18px;
+      max-width: 860px;
+      text-align: center;
+    }
+    
+    .btn-gold {
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      border: 2px solid #c8a96b;
+      border-radius: 16px;
+      padding: 12px 30px;
+      background: transparent;
+      color: #c8a96b;
+      font-size: 0.9em;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 24px;
+    }
+    .btn-gold:hover {
+      background: #c8a96b;
+      color: #051412;
+      box-shadow: 0 0 15px rgba(200, 169, 107, 0.4);
+    }
+    .btn-gold:active {
+      transform: scale(0.98);
+    }
+
+    /* Gold Info Text Styling */
+    .gold-info-text {
+      color: #c8a96b;
+      font-size: 0.85em;
+      line-height: 1.6;
+      font-weight: 600;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+    
+    .gold-info-text p {
+      margin: 6px 0;
+      color: #c8a96b;
+      opacity: 1;
+    }
+
+    .copyright-text {
+      color: #c8a96b;
+      font-size: 0.7em;
+      opacity: 0.7;
+      letter-spacing: 0.5px;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -261,6 +320,22 @@
     <div class="success" id="successMessage">
       Booking successfully sent ✨
     </div>
+  </div>
+</div>
+
+<div class="cta-container">
+  <a href="https://www.instagram.com/by.ekkles/" target="_blank" class="btn-gold">FOLLOW OUR INSTAGRAM</a>
+  
+  <div class="gold-info-text">
+    <p><strong>HAIRDO GADING SERPONG | BSD | ALSUT | KARAWACI</strong></p>
+    <p>Certified hairstylist & hijabstylist</p>
+    <p>✨Loves sharing tutorials and interesting stories about hair</p>
+    <p>🙋🏻‍♀️ OPEN SELF-PRO HAIRDO CLASS</p>
+    <p>PL/ availability👇🏻(Admin)</p>
+  </div>
+
+  <div class="copyright-text">
+    © 2024 HAIR DO by.Ekkles All Rights Reserved.
   </div>
 </div>
 
