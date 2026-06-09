@@ -15,31 +15,37 @@
       color: #ffffff; 
     }
     
-    /* Logo Styles */
+    /* Logo Styles - Position set to static/relative inside a container (Not Floating) */
+    .logo-container {
+      max-width: 860px;
+      margin: 10px auto 0;
+      padding: 0 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     #topLogo {
-      position: fixed;
-      top: 5px;
-      left: 5px;
       width: 60px;
       height: auto;
       cursor: pointer;
-      z-index: 9999;
       transition: transform 0.12s ease-in-out;
     }
     
-    /* WhatsApp Floating Button Style - Moved to top parallel to logo */
+    /* WhatsApp Logo Style - Parallel to logo (Not Floating) */
     #waLogo {
-      position: fixed;
-      top: 5px;
-      right: 5px;
       width: 50px;
       height: auto;
       cursor: pointer;
-      z-index: 9999;
       transition: transform 0.12s ease-in-out;
     }
     
-    .wrap { max-width: 860px; margin: 28px auto; padding: 18px; }
+    /* Form position lowered by 5mm from the bottom of the logos */
+    .wrap { 
+      max-width: 860px; 
+      margin: 5mm auto 28px; 
+      padding: 0 18px; 
+    }
     
     /* Card background: Deep Dark Green with thin electric blue undertones and gold border */
     .card { 
@@ -134,10 +140,11 @@
       color: #00ffcc; margin-top: 10px;
     }
     
+    /* Booking Summary: Set in its place (Not Floating) */
     .summary {
       margin-top: 26px; background: #060b0e; color: #ffffff; border: 1px solid #c8a96b;
-      border-radius: 22px; padding: 20px; position: sticky; bottom: 12px;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.8), 0 0 0 1px rgba(0, 210, 255, 0.1);
+      border-radius: 22px; padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4), 0 0 0 1px rgba(0, 210, 255, 0.1);
     }
     .summary h2 { margin-top: 0; color: #ffffff; }
     .summary-row { display: flex; justify-content: space-between; gap: 14px; margin: 9px 0; color: #ffffff; }
@@ -154,15 +161,35 @@
     .btn:hover { opacity: 0.95; }
     .btn:active { transform: scale(0.99); }
     
-    pre { white-space: pre-wrap; background: #030e0c; border: 1px solid #c8a96b; color: #00ffcc; border-radius: 16px; padding: 16px; overflow: auto; font-size: 13px; }
+    /* Success Message Pop-up Style */
+    .success {
+      display: none;
+      background: #04201b;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 20px;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+      animation: fadeIn 0.4s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 
 <body>
 
-<img src="logo.png" id="topLogo" alt="Logo" />
-
-<img src="walogo.png" id="waLogo" alt="WhatsApp Support" />
+<div class="logo-container">
+  <img src="logo.png" id="topLogo" alt="Logo" />
+  <img src="walogo.png" id="waLogo" alt="WhatsApp Support" />
+</div>
 
 <div class="wrap">
   <div class="card">
@@ -212,8 +239,11 @@
 
       <div class="two-col">
         <div>
-          <label>Usia Client</label>
-          <input id="age" type="number" min="1" placeholder="Contoh: 28" />
+          <label>Age Over 45</label>
+          <select id="age">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
         </div>
         <div>
           <label>Area Transport</label>
@@ -227,7 +257,12 @@
       <div id="autoNotes"></div>
 
       <h2>5. Catatan / Request Model</h2>
-      <textarea id="notes" placeholder="Contoh: Korean wave, low bun, soft clean bun, membawa hairclip sendiri, dll"></textarea>
+      <select id="notes">
+        <option value="According to Theme">According to Theme</option>
+        <option value="According to Season">According to Season</option>
+        <option value="According to Face">According to Face</option>
+        <option value="Latest Model">Latest Model</option>
+      </select>
 
       <div class="summary">
         <h2>Booking Summary</h2>
@@ -238,11 +273,12 @@
         </div>
       </div>
 
-      <button class="btn" type="submit">Submit Inquiry</button>
+      <button class="btn" type="submit">Send Booking</button>
     </form>
 
-    <h2>Output Data Submit</h2>
-    <pre id="output">Belum ada data submit.</pre>
+    <div class="success" id="successMessage">
+      Booking successfully sent ✨
+    </div>
   </div>
 </div>
 
@@ -557,8 +593,8 @@ function renderIncluded() {
 }
 
 function matureFee() {
-  const age = Number(document.getElementById("age").value || 0);
-  if (selectedServiceId === "regular" && age > 45) return 50000;
+  const ageValue = document.getElementById("age").value;
+  if (selectedServiceId === "regular" && ageValue === "yes") return 50000;
   return 0;
 }
 
@@ -571,7 +607,7 @@ function renderAutoNotes() {
   }
 
   if (document.getElementById("transportArea").value === "confirm") {
-    html += `<div class="note">Lokasi di luar area free transport. Biaya transport perlu dikonfirmasi manual.</div>`;
+    html += `<div class="note">Lokasi di luar area free transport. Biaya transport perlu konfirmasi manual.</div>`;
   }
 
   box.innerHTML = html;
@@ -651,7 +687,7 @@ function initDateTimeConstraints() {
   document.getElementById("eventDate").setAttribute("min", minDate);
 }
 
-document.getElementById("age").addEventListener("input", updateSummary);
+document.getElementById("age").addEventListener("change", updateSummary);
 document.getElementById("transportArea").addEventListener("change", updateSummary);
 
 document.getElementById("bookingForm").addEventListener("submit", (e) => {
@@ -662,28 +698,12 @@ document.getElementById("bookingForm").addEventListener("submit", (e) => {
     return;
   }
 
-  const service = services[selectedServiceId];
-  const addons = selectedAddons();
-  const mFee = matureFee();
-  const total = service.price + mFee + addons.reduce((s, a) => s + a.price, 0);
+  // Show interactive success pop-up element
+  const successBox = document.getElementById("successMessage");
+  successBox.style.display = "block";
+  successBox.scrollIntoView({ behavior: "smooth" });
 
-  const payload = {
-    client_name: document.getElementById("clientName").value,
-    whatsapp: document.getElementById("whatsapp").value,
-    event_date: document.getElementById("eventDate").value,
-    ready_time: document.getElementById("readyTime").value,
-    location: document.getElementById("location").value,
-    age: document.getElementById("age").value,
-    transport_area: document.getElementById("transportArea").value,
-    service: { id: selectedServiceId, label: service.label, price: service.price },
-    addons,
-    auto_fee: { mature_fee: mFee },
-    estimated_total: total,
-    notes: document.getElementById("notes").value
-  };
-
-  document.getElementById("output").textContent = JSON.stringify(payload, null, 2);
-  alert("Inquiry berhasil dibuat. Data bisa dilihat di bagian Output.");
+  alert("Inquiry berhasil dibuat.");
 });
 
 // Interactive Logo Logic
