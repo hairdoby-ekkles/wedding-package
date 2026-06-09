@@ -7,7 +7,6 @@
   <style>
     * { box-sizing: border-box; }
     
-    /* Base color: Black with subtle dark green/blue undertone */
     body { 
       margin: 0; 
       font-family: 'Segoe UI', Arial, sans-serif; 
@@ -15,9 +14,8 @@
       color: #ffffff; 
     }
     
-    /* Logo Styles - Position set to static/relative inside a container (Not Floating) */
     .logo-container {
-      max-width: 1360px;
+      max-width: 1060px;
       margin: 10px auto 0;
       padding: 0 18px;
       display: flex;
@@ -32,7 +30,6 @@
       transition: transform 0.12s ease-in-out;
     }
     
-    /* WhatsApp Logo Style - Parallel to logo (Not Floating) */
     #waLogo {
       width: 50px;
       height: auto;
@@ -40,14 +37,12 @@
       transition: transform 0.12s ease-in-out;
     }
     
-    /* Form position lowered by 5mm from the bottom of the logos */
     .wrap { 
-      max-width: 1060px; 
+      max-width: 860px; 
       margin: 5mm auto 28px; 
       padding: 0 18px; 
     }
     
-    /* Card background: Deep Dark Green with thin electric blue undertones and gold border */
     .card { 
       background: #051412; 
       border-radius: 24px; 
@@ -70,7 +65,6 @@
     
     label { display: block; margin: 13px 0 6px; font-weight: 700; font-size: 14px; color: #ffffff; }
     
-    /* Input fields: Deep Forest Black/Green, Gold Border, White Text */
     input, textarea, select {
       width: 100%; border: 1px solid #c8a96b; border-radius: 14px;
       padding: 12px 13px; font-size: 15px; background: #030e0c; color: #ffffff;
@@ -83,10 +77,9 @@
       box-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
     }
 
-    /* SPECIFIC CHANGE: Service Select Focus State */
     #serviceSelect:focus {
-      background-color: #FF69B4; /* Hot Pink */
-      color: #FFFFFF;            /* Pure White */
+      background-color: #FF69B4;
+      color: #FFFFFF;
       border-color: #FF69B4;
     }
     
@@ -140,7 +133,6 @@
       color: #00ffcc; margin-top: 10px;
     }
     
-    /* Booking Summary: Set in its place (Not Floating) */
     .summary {
       margin-top: 26px; background: #060b0e; color: #ffffff; border: 1px solid #c8a96b;
       border-radius: 22px; padding: 20px;
@@ -151,7 +143,6 @@
     .summary-row.muted { color: #00d2ff; opacity: 0.6; font-size: 14px; }
     .total { border-top: 1px solid #c8a96b; padding-top: 14px; margin-top: 14px; font-size: 20px; font-weight: 800; color: #00ffcc; }
     
-    /* Vibrant contemporary Green & Blue gradient button */
     .btn {
       width: 100%; border: 0; border-radius: 16px; padding: 15px;
       margin-top: 18px; background: linear-gradient(135deg, #00ffcc, #00d2ff); color: #060b0e; font-size: 16px;
@@ -161,18 +152,10 @@
     .btn:hover { opacity: 0.95; }
     .btn:active { transform: scale(0.99); }
     
-    /* Success Message Pop-up Style */
     .success {
-      display: none;
-      background: #04201b;
-      border: 2px solid #00ffcc;
-      color: #00ffcc;
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      font-weight: 700;
-      font-size: 16px;
-      margin-top: 20px;
+      display: none; background: #04201b; border: 2px solid #00ffcc;
+      color: #00ffcc; border-radius: 16px; padding: 20px;
+      text-align: center; font-weight: 700; font-size: 16px; margin-top: 20px;
       box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
       animation: fadeIn 0.4s ease-in-out forwards;
     }
@@ -196,7 +179,6 @@
     <h1>Hairdo Booking By.Ekkles</h1>
 
     <form id="bookingForm">
-
       <h2>1. Pilih Service</h2>
       <label>Service yang dibutuhkan</label>
       <select id="serviceSelect" required>
@@ -387,7 +369,7 @@ const services = {
       ]},
       { title: "Retouch / Touch-up", subtitle: "Untuk bride yang ingin ada touch-up tambahan saat acara.", addons: [
         { id: "retouch_bride_1time", label: "Retouch 1 time", price: 450000, desc: "For dinner events" },
-        { id: "retouch_bride_hourly", label: "Retouch following the bride until the event is finished", price: 300000, desc: "Per hour until the event is finished", perHour: true }
+        { id: "retouch_bride_hourly", label: "Retouch Standby until the event is finished", price: 300000, desc: "Price per hour", autoCalcTime: true }
       ]},
       { title: "Trial Session", subtitle: "Trial hanya weekdays. Jika weekend ada tambahan biaya.", addons: [
         { id: "trial_weekday", label: "Add trial weekdays", price: 400000, desc: "Trial hairdo di hari kerja." },
@@ -461,13 +443,10 @@ function initServiceDropdown() {
 
 function renderServicePreview() {
   const preview = document.getElementById("servicePreview");
-
   if (!selectedServiceId) {
     preview.classList.add("hidden");
-    preview.innerHTML = "";
     return;
   }
-
   const service = services[selectedServiceId];
   preview.classList.remove("hidden");
   preview.innerHTML = `
@@ -487,12 +466,11 @@ function renderAddons() {
   panel.innerHTML = "";
 
   if (!selectedServiceId) {
-    intro.textContent = "Pilih service terlebih dahulu. Add-on akan muncul dalam bentuk expandable dropdown.";
+    intro.textContent = "Pilih service terlebih dahulu.";
     return;
   }
 
-  intro.textContent = "Buka kategori add-on yang dibutuhkan saja. tekan + dan sentuh kotak sesuai pilihan.";
-
+  intro.textContent = "Buka kategori add-on yang dibutuhkan saja.";
   const service = services[selectedServiceId];
 
   service.addonGroups.forEach((group, index) => {
@@ -508,39 +486,41 @@ function renderAddons() {
     `;
 
     const list = details.querySelector(".addon-list");
-
     group.addons.forEach(addon => {
       const row = document.createElement("div");
       row.className = "addon-row";
       row.dataset.requires = addon.requires || "";
 
       row.innerHTML = `
-        <input
-          type="checkbox"
-          class="addon-check"
-          id="${addon.id}"
-          data-id="${addon.id}"
-          data-label="${addon.label}"
-          data-price="${addon.price}"
+        <input type="checkbox" class="addon-check" id="${addon.id}" data-id="${addon.id}"
+          data-label="${addon.label}" data-price="${addon.price}"
           data-perhour="${addon.perHour ? "yes" : "no"}"
-          data-requires="${addon.requires || ""}"
-        />
+          data-autocalc="${addon.autoCalcTime ? "yes" : "no"}" />
         <div style="flex:1;">
           <div class="addon-name">${addon.label}</div>
           <div class="addon-desc">${addon.desc}</div>
+          
           ${addon.perHour ? `
             <div class="nested hidden" data-hour-box="${addon.id}">
               <label>Jumlah jam standby</label>
               <input type="number" class="hour-input" data-for="${addon.id}" value="1" min="1" />
             </div>
           ` : ""}
-        </div>
-        <div class="addon-price">${addon.perHour ? rupiah(addon.price) + " / jam" : "+" + rupiah(addon.price)}</div>
-      `;
 
+          ${addon.autoCalcTime ? `
+            <div class="nested hidden" data-time-box="${addon.id}">
+              <div class="two-col" style="margin-top:10px;">
+                <div><label>Event Start Time</label><input type="time" class="start-time" data-for="${addon.id}"></div>
+                <div><label>Event End Time</label><input type="time" class="end-time" data-for="${addon.id}"></div>
+              </div>
+              <div class="note" style="margin-top:10px; font-size:12px;" id="calcNote-${addon.id}">Fill times to calculate hours.</div>
+            </div>
+          ` : ""}
+        </div>
+        <div class="addon-price">${(addon.perHour || addon.autoCalcTime) ? rupiah(addon.price) + " / jam" : "+" + rupiah(addon.price)}</div>
+      `;
       list.appendChild(row);
     });
-
     panel.appendChild(details);
   });
 
@@ -551,28 +531,27 @@ function renderAddons() {
 function bindAddonEvents() {
   document.querySelectorAll(".addon-check").forEach(cb => {
     cb.addEventListener("change", () => {
-      const hourBox = document.querySelector(`[data-hour-box="${cb.dataset.id}"]`);
-      if (hourBox) hourBox.classList.toggle("hidden", !cb.checked);
+      const hBox = document.querySelector(`[data-hour-box="${cb.dataset.id}"]`);
+      const tBox = document.querySelector(`[data-time-box="${cb.dataset.id}"]`);
+      if (hBox) hBox.classList.toggle("hidden", !cb.checked);
+      if (tBox) tBox.classList.toggle("hidden", !cb.checked);
       applyDependencyVisibility();
       updateSummary();
     });
   });
 
-  document.querySelectorAll(".hour-input").forEach(input => {
-    input.addEventListener("input", updateSummary);
+  document.querySelectorAll(".hour-input, .start-time, .end-time").forEach(el => {
+    el.addEventListener("input", updateSummary);
   });
 }
 
 function applyDependencyVisibility() {
   document.querySelectorAll("[data-requires]").forEach(row => {
-    const requiredId = row.dataset.requires;
-    if (!requiredId) return;
-
-    const requiredInput = document.getElementById(requiredId);
-    const show = requiredInput && requiredInput.checked;
-
+    const reqId = row.dataset.requires;
+    if (!reqId) return;
+    const reqInp = document.getElementById(reqId);
+    const show = reqInp && reqInp.checked;
     row.classList.toggle("hidden", !show);
-
     if (!show) {
       const cb = row.querySelector(".addon-check");
       if (cb) cb.checked = false;
@@ -582,63 +561,29 @@ function applyDependencyVisibility() {
 
 function renderIncluded() {
   const box = document.getElementById("includedBox");
-
   if (!selectedServiceId) {
-    box.innerHTML = "<p>Pilih service terlebih dahulu untuk melihat benefit yang termasuk.</p>";
+    box.innerHTML = "<p>Pilih service terlebih dahulu.</p>";
     return;
   }
-
   const items = services[selectedServiceId].included.map(item => `<li>${item}</li>`).join("");
   box.innerHTML = `<strong>Included:</strong><ul>${items}</ul>`;
 }
 
-function matureFee() {
-  const ageValue = document.getElementById("age").value;
-  if (selectedServiceId === "regular" && ageValue === "yes") return 50000;
-  return 0;
-}
-
-function renderAutoNotes() {
-  const box = document.getElementById("autoNotes");
-  let html = "";
-
-  if (matureFee() > 0) {
-    html += `<div class="note">Mature fee +50k otomatis ditambahkan karena usia client di atas 45 tahun.</div>`;
-  }
-
-  if (document.getElementById("transportArea").value === "confirm") {
-    html += `<div class="note">Lokasi di luar area free transport. Biaya transport perlu konfirmasi manual.</div>`;
-  }
-
-  box.innerHTML = html;
-}
-
-function selectedAddons() {
-  const arr = [];
-
-  document.querySelectorAll(".addon-check:checked").forEach(cb => {
-    let qty = 1;
-    let price = Number(cb.dataset.price);
-
-    if (cb.dataset.perhour === "yes") {
-      const hourInput = document.querySelector(`.hour-input[data-for="${cb.dataset.id}"]`);
-      qty = Math.max(1, Number(hourInput.value || 1));
-      price = price * qty;
-    }
-
-    arr.push({ id: cb.dataset.id, label: cb.dataset.label, qty, price });
-  });
-
-  return arr;
+function calculateDuration(start, end) {
+  if (!start || !end) return 0;
+  const [sH, sM] = start.split(':').map(Number);
+  const [eH, eM] = end.split(':').map(Number);
+  let diff = (eH * 60 + eM) - (sH * 60 + sM);
+  if (diff < 0) diff += 1440; // Over midnight
+  return Math.max(1, Math.ceil(diff / 60));
 }
 
 function updateSummary() {
-  renderAutoNotes();
-
   const box = document.getElementById("summaryItems");
   const totalText = document.getElementById("totalText");
-
+  const autoNotes = document.getElementById("autoNotes");
   box.innerHTML = "";
+  autoNotes.innerHTML = "";
   let total = 0;
 
   if (!selectedServiceId) {
@@ -649,42 +594,51 @@ function updateSummary() {
 
   const service = services[selectedServiceId];
   total += service.price;
-
   box.innerHTML += `<div class="summary-row"><span>${service.label}</span><span>${rupiah(service.price)}</span></div>`;
 
-  const mFee = matureFee();
-  if (mFee > 0) {
-    total += mFee;
-    box.innerHTML += `<div class="summary-row"><span>Mature fee > 45 tahun</span><span>${rupiah(mFee)}</span></div>`;
+  // Mature Fee
+  if (selectedServiceId === "regular" && document.getElementById("age").value === "yes") {
+    total += 50000;
+    box.innerHTML += `<div class="summary-row"><span>Mature fee > 45 tahun</span><span>${rupiah(50000)}</span></div>`;
+    autoNotes.innerHTML += `<div class="note">Mature fee +50k ditambahkan.</div>`;
   }
 
-  selectedAddons().forEach(addon => {
-    total += addon.price;
+  // Addons
+  document.querySelectorAll(".addon-check:checked").forEach(cb => {
+    let qty = 1;
+    let price = Number(cb.dataset.price);
+
+    if (cb.dataset.perhour === "yes") {
+      qty = Math.max(1, Number(document.querySelector(`.hour-input[data-for="${cb.dataset.id}"]`).value || 1));
+    } else if (cb.dataset.autocalc === "yes") {
+      const start = document.querySelector(`.start-time[data-for="${cb.dataset.id}"]`).value;
+      const end = document.querySelector(`.end-time[data-for="${cb.dataset.id}"]`).value;
+      qty = calculateDuration(start, end);
+      const noteEl = document.getElementById(`calcNote-${cb.dataset.id}`);
+      if (noteEl) noteEl.textContent = qty > 0 ? `Duration: ${qty} hour(s)` : "Fill times to calculate hours.";
+    }
+
+    const finalAddonPrice = price * qty;
+    total += finalAddonPrice;
     box.innerHTML += `
       <div class="summary-row">
-        <span>${addon.label}${addon.qty > 1 ? " x " + addon.qty : ""}</span>
-        <span>${rupiah(addon.price)}</span>
+        <span>${cb.dataset.label}${qty > 1 ? " x " + qty : ""}</span>
+        <span>${rupiah(finalAddonPrice)}</span>
       </div>
     `;
   });
 
   if (document.getElementById("transportArea").value === "confirm") {
     box.innerHTML += `<div class="summary-row muted"><span>Transport luar area</span><span>Confirm</span></div>`;
+    autoNotes.innerHTML += `<div class="note">Biaya transport perlu konfirmasi manual.</div>`;
   }
 
   totalText.textContent = rupiah(total);
 }
 
-// Fitur Kalender & Waktu Otomatis
 function initDateTimeConstraints() {
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
-  
-  // Membatasi agar tanggal yang lalu tidak bisa dipilih
-  const minDate = `${yyyy}-${mm}-${dd}`;
-  document.getElementById("eventDate").setAttribute("min", minDate);
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById("eventDate").setAttribute("min", today);
 }
 
 document.getElementById("age").addEventListener("change", updateSummary);
@@ -692,50 +646,28 @@ document.getElementById("transportArea").addEventListener("change", updateSummar
 
 document.getElementById("bookingForm").addEventListener("submit", (e) => {
   e.preventDefault();
-
-  if (!selectedServiceId) {
-    alert("Silakan pilih service terlebih dahulu.");
-    return;
-  }
-
-  // Show interactive success pop-up element
   const successBox = document.getElementById("successMessage");
   successBox.style.display = "block";
   successBox.scrollIntoView({ behavior: "smooth" });
-
   alert("Inquiry berhasil dibuat.");
 });
 
-// Interactive Logo Logic
 document.getElementById("topLogo").addEventListener("click", function() {
-  // Move down by 8px
   this.style.transform = "translateY(8px)";
-  
-  // Return back up after 120ms
   setTimeout(() => {
     this.style.transform = "translateY(0)";
-    
-    // Redirect to the URL after completion of the return animation
-    setTimeout(() => {
-      window.location.href ="https://hairdoby-ekkles.github.io/hairdo/";
-    }, 120);
+    setTimeout(() => { window.location.href ="https://hairdoby-ekkles.github.io/hairdo/"; }, 120);
   }, 120);
 });
 
-// Interactive WhatsApp Logo Logic
 document.getElementById("waLogo").addEventListener("click", function() {
-  // Move up by 5mm (approx. -19px given standard web specs)
   this.style.transform = "translateY(-19px)";
-  
-  // Return back down after 120ms
   setTimeout(() => {
     this.style.transform = "translateY(0)";
-    
-    // Trigger WhatsApp redirect after return animation completes
     setTimeout(() => {
       const phoneNumber = "6281314798161";
-      const textMessage = "Hello Sis, I have filled out the form and submitted the inquiry";
-      window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(textMessage)}`;
+      const text = "Hello Sis, I have filled out the form and submitted the inquiry";
+      window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
     }, 120);
   }, 120);
 });
