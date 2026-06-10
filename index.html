@@ -117,7 +117,7 @@
       border-radius: 14px; border: 1px dashed #c8a96b;
     }
     
-    .hidden { display: none; }
+    .hidden { display: none !important; }
     
     .pill {
       display: inline-block; font-size: 0.75em; padding: 4px 8px;
@@ -219,6 +219,51 @@
       opacity: 0.7;
       letter-spacing: 0.5px;
     }
+
+    /* --- POPUP STRUK TAGIHAN STYLES --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(6, 11, 14, 0.95);
+      display: flex; justify-content: center; align-items: center;
+      z-index: 10000;
+      padding: 15px;
+      transition: opacity 0.3s ease;
+    }
+    .receipt-card {
+      background: #051412;
+      border: 2px solid #c8a96b;
+      border-radius: 24px;
+      padding: 26px;
+      width: 100%;
+      max-width: 550px;
+      box-shadow: 0 14px 40px rgba(0, 255, 204, 0.2);
+    }
+    .receipt-header {
+      text-align: center;
+      border-bottom: 1px dashed rgba(200, 169, 107, 0.4);
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }
+    .receipt-header h3 { margin: 0; color: #c8a96b; font-size: 1.3em; letter-spacing: 0.5px; }
+    .receipt-header p { margin: 4px 0 0; color: #ffffff; font-size: 0.85em; opacity: 0.8; }
+    .receipt-body { margin-bottom: 18px; }
+    .receipt-row { display: flex; justify-content: space-between; margin: 9px 0; gap: 12px; font-size: 0.85em; }
+    .receipt-row span:first-child { color: #00d2ff; opacity: 0.9; }
+    .receipt-row span:last-child { color: #ffffff; text-align: right; font-weight: 600; }
+    .receipt-divider { border: 0; border-top: 1px dashed rgba(200, 169, 107, 0.4); margin: 14px 0; }
+    .receipt-row.total-row span:last-child { color: #00ffcc; font-weight: 800; font-size: 1.1em; }
+    .receipt-row.dp-row span:last-child { color: #ff69b4; font-weight: 800; font-size: 1.1em; }
+    .receipt-footer {
+      text-align: center; color: #c8a96b; font-size: 0.75em; line-height: 1.4;
+      margin: 14px 0; background: rgba(200, 169, 107, 0.08); padding: 10px; border-radius: 12px;
+    }
+    .btn-close-modal {
+      width: 100%; border: 0; border-radius: 16px; padding: 14px;
+      background: linear-gradient(135deg, #c8a96b, #b39255); color: #060b0e; font-size: 0.9em;
+      cursor: pointer; font-weight: 800; text-transform: uppercase; transition: opacity 0.2s;
+    }
+    .btn-close-modal:hover { opacity: 0.9; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -336,6 +381,33 @@
 
   <div class="copyright-text">
     © 2024 HAIR DO by.Ekkles All Rights Reserved.
+  </div>
+</div>
+
+<div id="receiptModal" class="modal-overlay hidden">
+  <div class="receipt-card">
+    <div class="receipt-header">
+      <h3>STRUK ESTIMASI BOOKING</h3>
+      <p>Hairdo By.Ekkles</p>
+    </div>
+    <div class="receipt-body">
+      <div class="receipt-row"><span>Nama Client:</span><span id="rClientName"></span></div>
+      <div class="receipt-row"><span>WhatsApp:</span><span id="rWhatsapp"></span></div>
+      <div class="receipt-row"><span>Tanggal Acara:</span><span id="rEventDate"></span></div>
+      <div class="receipt-row"><span>Jam Ready:</span><span id="rReadyTime"></span></div>
+      <hr class="receipt-divider">
+      <div class="receipt-row"><span>Service Utama:</span><span id="rService"></span></div>
+      <div class="receipt-row"><span>Add-on Pilihan:</span><span id="rAddons"></span></div>
+      <div class="receipt-row"><span>Mature Fee:</span><span id="rMatureFee"></span></div>
+      <div class="receipt-row"><span>Transport:</span><span id="rTransport"></span></div>
+      <hr class="receipt-divider">
+      <div class="receipt-row total-row"><span>Total Estimasi:</span><span id="rTotal"></span></div>
+      <div class="receipt-row dp-row"><span>Minimal DP (50%):</span><span id="rDp"></span></div>
+    </div>
+    <div class="receipt-footer">
+      ⚠️ Silakan screenshot atau simpan struk ini sebagai bukti rincian booking Anda!
+    </div>
+    <button type="button" class="btn-close-modal" id="closeReceiptBtn">Tutup Struk</button>
   </div>
 </div>
 
@@ -808,17 +880,45 @@ document.getElementById("bookingForm").addEventListener("submit", async (e) => {
     const response = await fetch(scriptURL, {
       method: 'POST',
       body: JSON.stringify(payload),
-      // Gunakan text/plain untuk menghindari isu CORS preflight di Google Script
       headers: { 'Content-Type': 'text/plain;charset=utf-8' }
     });
 
     if (response.ok) {
-      // Jika berhasil, munculkan pesan success ✨
+      const responseText = await response.text();
+      let resData = { result: "success" }; // Fallback default
+      try {
+        resData = JSON.parse(responseText);
+      } catch (err) {
+        console.log("Response text is not JSON string.");
+      }
+
+      // Jika berhasil dicatat, munculkan pesan success ✨
       const successBox = document.getElementById("successMessage");
       successBox.style.display = "block";
       successBox.scrollIntoView({ behavior: "smooth" });
       
-      // Mengosongkan form setelah sukses (opsional, hapus baris ini jika tidak perlu dikosongkan)
+      // 5. PENGECEKAN STATUS DP DARI SHEET RESPOND
+      // Jika isAvailable bernilai false (berarti tanggal tersebut sudah ada yang bayar DP)
+      if (resData.isAvailable === false) {
+        alert("Maaf, tanggal tersebut sudah di-booking penuh dan dikonfirmasi DP oleh client lain.");
+      } else {
+        // Jika belum ada yang bayar DP, Munculkan Struk Tagihan
+        document.getElementById("rClientName").textContent = payload.namaClient;
+        document.getElementById("rWhatsapp").textContent = payload.whatsapp;
+        document.getElementById("rEventDate").textContent = payload.tanggalAcara;
+        document.getElementById("rReadyTime").textContent = payload.jamReady;
+        document.getElementById("rService").textContent = payload.serviceUtama + " (" + rupiah(payload.biayaService) + ")";
+        document.getElementById("rAddons").textContent = payload.addonPilihan;
+        document.getElementById("rMatureFee").textContent = rupiah(payload.matureFee);
+        document.getElementById("rTransport").textContent = payload.transportCharge === "Confirm" ? "Perlu Konfirmasi" : "Termasuk Radius";
+        document.getElementById("rTotal").textContent = rupiah(payload.totalEstimasi);
+        document.getElementById("rDp").textContent = rupiah(payload.minimalDp);
+
+        // Menampilkan jendela Pop-up Struk
+        document.getElementById("receiptModal").classList.remove("hidden");
+      }
+
+      // Mengosongkan form setelah sukses
       document.getElementById("bookingForm").reset();
       updateSummary(); 
     } else {
@@ -834,17 +934,7 @@ document.getElementById("bookingForm").addEventListener("submit", async (e) => {
   }
 });
     
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    document.getElementById("topLogo").addEventListener("click", function() {
+document.getElementById("topLogo").addEventListener("click", function() {
   this.style.transform = "translateY(8px)";
   setTimeout(() => {
     this.style.transform = "translateY(0)";
@@ -862,6 +952,11 @@ document.getElementById("waLogo").addEventListener("click", function() {
       window.location.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
     }, 120);
   }, 120);
+});
+
+// Event click untuk menutup jendela struk modal
+document.getElementById("closeReceiptBtn").addEventListener("click", () => {
+  document.getElementById("receiptModal").classList.add("hidden");
 });
 
 initServiceDropdown();
